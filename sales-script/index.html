@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2-Minute Sales Script — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  .body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* ── Script box ── */
+  .script-box {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .script-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6800FC;
+    margin-bottom: 8px;
+  }
+  .script-text {
+    font-size: 16px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── Example divider ── */
+  .example-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #6800FC;
+    margin: 20px 0 8px;
+  }
+  .example-text {
+    font-size: 15px;
+    color: #121212;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 12 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">The 2-Minute Sales Script</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: The Problem with "I'm a CPA" ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">The Problem</div>
+      <h1 class="slide-title">The Problem with "I'm a CPA"</h1>
+      <p class="slide-sub">When someone asks "What do you do?" and you say "I'm a CPA," you've already lost them.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>"I'm a CPA."</strong> &mdash; You get filed into a generic mental cabinet. They think of their bad experience with an accountant &mdash; or tune out entirely.
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">You lose control</span> <span class="step-rest">&mdash; of what they think about you</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">The conversation dies</span> <span class="step-rest">&mdash; before it ever starts</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">They default</span> <span class="step-rest">&mdash; to whatever they already think about accountants</span></div>
+      </li>
+    </ul>
+
+    <div class="quote">
+      <p>You want to create the meaning in their mind that you want them to have &mdash; versus allowing them to default to whatever they think of you.</p>
+    </div>
+
+    <div class="callout">
+      <strong>The 2-Minute Sales Script</strong> gives you a repeatable structure for every introduction &mdash; networking events, dinners, soccer games. Anywhere someone asks what you do.
+    </div>
+  </div>
+
+  <!-- ── Section 2: The Script Structure ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">The Framework</div>
+      <h1 class="slide-title">The Script Structure</h1>
+      <p class="slide-sub">Problem &rarr; Solution &rarr; Outcome. Three parts, 30-60 seconds to deliver.</p>
+    </div>
+
+    <div class="script-box">
+      <div class="script-label">Step 1 &mdash; Identify the Problem</div>
+      <div class="script-text">"Do you know how [type of person] often struggles with [specific problem]?"</div>
+    </div>
+
+    <div class="example-label">Example:</div>
+    <p class="example-text"><em>"Do you know how a lot of real estate investors end up overpaying in taxes because their CPA doesn't understand the strategies specific to rental properties?"</em></p>
+
+    <div class="script-box">
+      <div class="script-label">Step 2 &mdash; Offer the Solution</div>
+      <div class="script-text">"We help [type of person] [specific result] within [timeframe] using [your unique approach]."</div>
+    </div>
+
+    <div class="example-label">Example:</div>
+    <p class="example-text"><em>"We help real estate investors save an average of $25k per year in taxes by restructuring their entity setup and implementing strategies most CPAs don't know about."</em></p>
+
+    <div class="script-box">
+      <div class="script-label">Step 3 &mdash; They Respond</div>
+      <div class="script-text">"Oh wow, I'm dealing with that" or "I know someone who is."</div>
+    </div>
+
+    <div class="script-box" style="border-left-color: #57A04D; background: #F4FEF7;">
+      <div class="script-label" style="color: #57A04D;">Step 4 &mdash; You Lead</div>
+      <div class="script-text">"Cool, tell me more about that."</div>
+    </div>
+
+    <div class="callout green">
+      <strong>Now YOU're asking the questions.</strong> You're leading the conversation. You're the expert &mdash; not the person pitching.
+    </div>
+  </div>
+
+  <!-- ── Section 3: Why This Works ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">The Psychology</div>
+      <h1 class="slide-title">Why This Works</h1>
+      <p class="slide-sub">The psychology behind the script that opens doors.</p>
+    </div>
+
+    <div class="quote">
+      <p>Whoever asks the most questions in a conversation typically is the one doing the influencing.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Gets THEM talking, not you</span> <span class="step-rest">&mdash; the person asking questions is in control</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Demonstrates understanding</span> <span class="step-rest">&mdash; leading with a problem they recognize builds instant credibility</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">You're not pitching</span> <span class="step-rest">&mdash; you're starting a conversation about their problem</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Works everywhere</span> <span class="step-rest">&mdash; networking events, kids' soccer games, dinner parties, the gym</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>Most people think</strong> the person talking the most is in control &mdash; it's actually the opposite. The script is designed to get them talking, not you.
+    </div>
+  </div>
+
+  <!-- ── Section 4: Full Examples ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">In Practice</div>
+      <h1 class="slide-title">Full Examples</h1>
+      <p class="slide-sub">See the complete script in action for two different personas.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; border-top: 3px solid #6800FC;">
+      <div class="card-label purple">Real Estate Investor</div>
+
+      <div class="example-label">Step 1 &mdash; Identify the Problem</div>
+      <p class="example-text"><em>"Do you know how a lot of real estate investors end up overpaying in taxes because their CPA doesn't understand the strategies specific to rental properties?"</em></p>
+
+      <div class="example-label">Step 2 &mdash; Offer the Solution</div>
+      <p class="example-text"><em>"We help real estate investors save an average of $25k per year in taxes by restructuring their entity setup and implementing strategies most CPAs don't know about."</em></p>
+
+      <div class="example-label">Steps 3 &amp; 4 &mdash; They Respond, You Lead</div>
+      <p class="example-text"><em>Them: "Oh wow, I actually own some rentals and I feel like I'm paying way too much..."</em><br><em>You: "Cool, tell me more about that."</em></p>
+    </div>
+
+    <div class="card" style="border-top: 3px solid #6800FC;">
+      <div class="card-label purple">HVAC Contractor</div>
+
+      <div class="example-label">Step 1 &mdash; Identify the Problem</div>
+      <p class="example-text"><em>"Do you know how most HVAC contractors doing $1-3M in revenue end up paying over 30% in taxes because nobody's set up their entity structure correctly?"</em></p>
+
+      <div class="example-label">Step 2 &mdash; Offer the Solution</div>
+      <p class="example-text"><em>"We help contractors restructure their tax strategy and save $40-80k per year within the first 12 months &mdash; without changing how they run their business."</em></p>
+
+      <div class="example-label">Steps 3 &amp; 4 &mdash; They Respond, You Lead</div>
+      <p class="example-text"><em>Them: "That sounds exactly like my situation..."</em><br><em>You: "Tell me more about what's going on."</em></p>
+    </div>
+  </div>
+
+  <!-- ── Section 5: Specificity & Preparation ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Write Your Scripts</div>
+      <h1 class="slide-title">Specificity Is Magnetic</h1>
+      <p class="slide-sub">The more specific your script, the more it resonates. Write 3-5 versions for your key personas.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Weak</h3>
+        <ul>
+          <li>"We help business owners save on taxes."</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Magnetic</h3>
+        <ul>
+          <li>"We help HVAC contractors doing $1-3M save $40-80k/year in taxes."</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-weight:600;">Your scripts need these ingredients:</p>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Specific person</span> <span class="step-rest">&mdash; not "business owners" &mdash; who exactly?</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Specific problem</span> <span class="step-rest">&mdash; from your Problem-Solution Map (Module 05)</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Specific result with numbers</span> <span class="step-rest">&mdash; dollars, percentages, timeframes</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Your unique approach</span> <span class="step-rest">&mdash; what makes you different from every other CPA?</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>Prime yourself before events.</strong> Read through your 3-5 scripts in the car before walking in. Your brain will be loaded and ready to deliver naturally. The difference between "uh, I'm a CPA" and a confident 30-second hook is preparation, not talent.
+    </div>
+  </div>
+
+  <!-- ── Section 6: Action Items ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Your Action Items</h1>
+      <p class="slide-sub">Four exercises to complete before the next module.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Write 3 Scripts</div>
+        <div class="action-desc">One for each of your top 3 client personas using Problem &rarr; Solution &rarr; Outcome.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Specificity Check</div>
+        <div class="action-desc">Does each script have a specific problem, specific result, and specific timeframe? If it's vague, revise it.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Mirror Practice</div>
+        <div class="action-desc">Deliver each script out loud 5 times. Time yourself &mdash; aim for 30-60 seconds each.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Field Test</div>
+        <div class="action-desc">Use one script at your next networking event or casual conversation. See how it feels, see how people respond, then refine.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Stop saying "I'm a CPA." Start opening doors.</strong> Problem &rarr; Solution &rarr; Outcome. Your next great conversation starts with preparation. Next up: Module 13 &mdash; How to Follow Up Without Sounding Needy.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'The Problem' },
+    { id: 'sec-1', label: 'The Script' },
+    { id: 'sec-2', label: 'Why It Works' },
+    { id: 'sec-3', label: 'Full Examples' },
+    { id: 'sec-4', label: 'Write Yours' },
+    { id: 'sec-5', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = `${current + 1} / ${sections.length}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = `1 / ${sections.length}`;
+</script>
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem-Solution Mapping — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Table ── */
+  .psm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+  .psm-table th {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+  .psm-table th:first-child { border-radius: 8px 0 0 0; }
+  .psm-table th:last-child { border-radius: 0 8px 0 0; }
+  .psm-table td {
+    background: #fff;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+    border-bottom: 1px solid #E0E0E0;
+    vertical-align: top;
+  }
+  .psm-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  .psm-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+  /* ── Bullet list (simple) ── */
+  .bullet-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .bullet-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '\2022';
+    color: #6800FC;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 1.4 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">Problem-Solution Mapping</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: Core Principle ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Core Principle</div>
+      <h1 class="slide-title">Extract, Don't Preach</h1>
+      <p class="slide-sub">The preparation tool you'll use before every sales call for the rest of your career.</p>
+    </div>
+
+    <div class="quote">
+      <p>It's not about all the important information you know as a sales professional. It's about the important information you're able to extract from your clients to get them to a yes.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Know your prospect's top 5 problems <strong>before</strong> you get on the call</li>
+      <li>If you understand their problem better than anyone else, you earn the privilege of solving it</li>
+    </ul>
+
+    <div class="callout">
+      <strong>The best salespeople don't preach.</strong> They extract. Problem-Solution Mapping is how you prepare to extract the right information. You'll know exactly what problems to listen for, and exactly what to say when you hear them.
+    </div>
+  </div>
+
+  <!-- ── Section 2: What Is PSM ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">The Framework</div>
+      <h1 class="slide-title">What Is Problem-Solution Mapping?</h1>
+      <p class="slide-sub">For each problem your prospects have, map it to your solution and the outcome the client gets.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>It's your preparation tool &mdash; built before calls, used during them</li>
+      <li>It bridges your offer (what you sell) to their reality (what they feel)</li>
+      <li>Without it, you're winging the most important conversation in your business</li>
+      <li>With it, you're prepared for any direction the call goes &mdash; no freezing, no fumbling</li>
+      <li>It also becomes the foundation of your offer messaging: website, content, DMs</li>
+    </ul>
+
+    <div class="callout">
+      <strong>This map doesn't just help on calls.</strong> It becomes the foundation of everything you write &mdash; your website copy, your content, your DMs. It all comes from the map.
+    </div>
+  </div>
+
+  <!-- ── Section 3: Three-Column Framework ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Three Columns</div>
+      <h1 class="slide-title">The Three-Column Framework</h1>
+      <p class="slide-sub">Problem &rarr; Solution &rarr; Outcome. Every row in your map follows this structure.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Problem</div>
+        <div class="card-desc">The specific pain, stated in the prospect's own words. Not accounting jargon &mdash; their language, their frustration, their reality.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Solution</div>
+        <div class="card-desc">How your offer specifically addresses this problem. Tie it directly to your signature offer from Module 1.3.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Outcome</div>
+        <div class="card-desc">The tangible result the client experiences after it's solved. Dollars saved, hours recovered, stress eliminated. Make it specific.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The more specific the outcome, the more believable it is.</strong> "Save money on taxes" is weak. "Our average client discovers $25k+ in annual overpayments" makes someone lean forward in their chair.
+    </div>
+  </div>
+
+  <!-- ── Section 4: Examples ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Real Examples</div>
+      <h1 class="slide-title">Problem-Solution Mapping in Action</h1>
+      <p class="slide-sub">Two concrete examples showing how this framework works for different niches.</p>
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-bottom:8px;">Example: Tax Planner</p>
+    <table class="psm-table">
+      <thead><tr><th>Problem</th><th>Solution</th><th>Outcome</th></tr></thead>
+      <tbody><tr>
+        <td>"I have no idea how much I'm overpaying in taxes"</td>
+        <td>We run a comprehensive tax analysis comparing your current structure against optimal strategies</td>
+        <td>You know your exact savings opportunity &mdash; our average client discovers $25k+ in annual overpayments</td>
+      </tr></tbody>
+    </table>
+
+    <div class="callout" style="margin-top:16px;">
+      <strong>Notice:</strong> The problem is in the prospect's words. The outcome has a real number &mdash; "$25k+" anchors the value before they even ask about price.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:28px;margin-bottom:8px;">Example: Bookkeeper</p>
+    <table class="psm-table">
+      <thead><tr><th>Problem</th><th>Solution</th><th>Outcome</th></tr></thead>
+      <tbody><tr>
+        <td>"I'm spending 15 hours a week on my own books"</td>
+        <td>We take over your full bookkeeping with monthly reconciliation and reporting</td>
+        <td>You get 15 hours a week back to focus on revenue-generating work</td>
+      </tr></tbody>
+    </table>
+
+    <div class="callout green" style="margin-top:16px;">
+      <strong>The outcome mirrors the problem exactly</strong> &mdash; time consumed becomes time recovered. That's the flip, not just the solution.
+    </div>
+  </div>
+
+  <!-- ── Section 5: Finding the Problems ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Research</div>
+      <h1 class="slide-title">Finding the Problems: Listen, Don't Assume</h1>
+      <p class="slide-sub">The problems come from your prospects &mdash; not from your assumptions about what they should care about.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Discovery calls and consultations &mdash; what do they <em>actually</em> say?</li>
+      <li>Casual conversations &mdash; when not in "buyer mode," people are more honest</li>
+      <li>The words THEY use are more powerful than the words YOU would use</li>
+      <li>Track patterns &mdash; after 5&ndash;10 conversations, the same 3&ndash;5 problems emerge</li>
+      <li>Just starting out? Think about the last 5 people you talked to. What did they complain about?</li>
+    </ul>
+
+    <p class="body-text" style="font-weight:600;margin-top:24px;margin-bottom:8px;">Common Problems to Start With</p>
+    <div class="compare">
+      <div class="compare-col">
+        <ul>
+          <li>Overpaying in taxes with no strategy</li>
+          <li>Zero financial visibility into the business</li>
+          <li>Bookkeeping consuming all their time</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <ul>
+          <li>Fear of an IRS audit</li>
+          <li>Can't get a loan &mdash; books are too messy</li>
+          <li>Don't know how much they can pay themselves</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout red">
+      <strong>These are starting points.</strong> Your map should reflect the specific problems YOUR prospects tell you about. Use their exact words, not a generic list.
+    </div>
+  </div>
+
+  <!-- ── Section 6: Using the Map ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Application</div>
+      <h1 class="slide-title">Using the Map on Sales Calls</h1>
+      <p class="slide-sub">Three steps to turn preparation into closed deals.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Ask</span> <span class="step-rest">&mdash; Walk into the call with questions designed to uncover each of the 5 problems on your map</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Listen</span> <span class="step-rest">&mdash; When they confirm a problem, you already know the solution and outcome. You prepared.</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Deliver</span> <span class="step-rest">&mdash; Share the solution and outcome naturally. No script, just preparation.</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>The prospect feels like you deeply understand them</strong> &mdash; because you prepared. That's the competitive advantage that closes deals.
+    </div>
+
+    <p class="body-text" style="margin-top:20px;">You're not reading from a script. You're having a conversation where you're prepared for every direction it could go. The result? You never freeze, you never fumble, and you earn the right to solve their problem.</p>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Build Your Map</h1>
+      <p class="slide-sub">Preparation is what separates the closer from the order-taker.</p>
+    </div>
+
+    <div class="callout" style="margin-bottom:20px;">
+      <strong>Build your map now</strong> using the PSM Worksheet linked in this module.
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Write 5 rows</div>
+        <div class="action-desc">One for each top problem your avatar faces. Problems must be in client language, not accounting jargon.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Tie solutions to your signature offer</div>
+        <div class="action-desc">Every solution column should connect back to the offer you built in Module 1.3.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Make outcomes specific</div>
+        <div class="action-desc">Dollars, hours, or stress removed. Read each outcome out loud &mdash; would a non-accountant understand it?</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Update after every 5 conversations</div>
+        <div class="action-desc">After your next 5 prospect conversations, update the map with the real language you heard. It's a living document.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <strong>This worksheet is the deliverable for this module.</strong> Don't move on until it's done &mdash; you'll use it in the next module when you build your 2-minute sales script.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Core Principle' },
+    { id: 'sec-1', label: 'What Is PSM' },
+    { id: 'sec-2', label: 'Three Columns' },
+    { id: 'sec-3', label: 'Examples' },
+    { id: 'sec-4', label: 'Finding Problems' },
+    { id: 'sec-5', label: 'Using the Map' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

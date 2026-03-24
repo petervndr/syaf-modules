@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identifying Your Client Avatar — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col.green-highlight {
+    border-color: #57A04D;
+    background: #F4FEF7;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col.green-highlight h3 { color: #57A04D; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col h3.purple { color: #6800FC; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '\2014 '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* ── Example card (left-border) ── */
+  .example-card {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .example-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+  }
+  .example-niche {
+    font-size: 14px;
+    font-weight: 600;
+    color: #121212;
+    margin-bottom: 6px;
+  }
+  .example-edge {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ── Journey stages ── */
+  .journey-card {
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .journey-card.red { background: #FDF2F1; border-left: 4px solid #8F281C; }
+  .journey-card.purple { background: #F3ECFE; border-left: 4px solid #6800FC; }
+  .journey-card.green { background: #F4FEF7; border-left: 4px solid #57A04D; }
+  .journey-label {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .journey-label.red { color: #8F281C; }
+  .journey-label.purple { color: #6800FC; }
+  .journey-label.green { color: #57A04D; }
+  .journey-desc {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 1.2 &nbsp;&middot;&nbsp; $0–$250K Toolkit</span>
+  <span class="topbar-title">Identifying Your Client Avatar</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: Who You Serve Determines What You Can Charge ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Who You Serve Determines What You Can Charge</h1>
+      <p class="slide-sub">"Expensive" is relative — even within the same niche, the math is completely different.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card red-accent">
+        <div class="card-label red">Solo Contractor — $400K/yr</div>
+        <div class="card-desc" style="margin-top:8px;">
+          Still doing most of the work himself. Tight margins — takes home $80K-$120K. Needs basic bookkeeping and compliance. <strong>$5K/yr feels expensive to him.</strong>
+        </div>
+      </div>
+      <div class="card green-accent">
+        <div class="card-label green">Established Shop — $5M/yr</div>
+        <div class="card-desc" style="margin-top:8px;">
+          Multiple crews, lots of overhead. Owner takes home ~$500K. Needs tax strategy, payroll, cash flow leadership. <strong>$5K/yr sounds too cheap to him.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Same industry, completely different buying power.</strong> To charge premium prices, you don't need to change what you do — you need to change who you serve. Your pricing only works if you're putting it in front of the right person.
+    </div>
+  </div>
+
+  <!-- ── Section 2: Your Competitive Advantage ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Competitive Advantage</div>
+      <h1 class="slide-title">Your Background Is Your Edge</h1>
+      <p class="slide-sub">People aren't coming to you just to get their books reconciled or their tax forms filed. That's the first stuff that gets replaced by AI.</p>
+    </div>
+
+    <div class="callout">
+      <strong>What clients actually want is an advisor</strong> — someone who can interpret the numbers and help them make strategic business decisions. Your individual expertise and background is your competitive advantage. Not your software stack.
+    </div>
+
+    <div class="example-card">
+      <div class="example-name">Brock</div>
+      <div class="example-niche">Bookkeeping for local moving companies</div>
+      <div class="example-edge">Partnered with a moving company owner at launch. Tripled his firm ($30K to $90K/mo) in under a year. His offer is perfectly aligned because he found someone who knew the industry inside and out.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-name">Nick Saylor</div>
+      <div class="example-niche">Bookkeeping for blue-collar businesses who run ads</div>
+      <div class="example-edge">Speaks the language of ad ROI, payback periods, and customer acquisition cost. Concrete companies, landscaping, construction — on the younger side, watching Alex Hormozi content, running ads. Most bookkeepers miss this entirely.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-name">Ryan Bakke</div>
+      <div class="example-niche">Tax Strategy 365 — tax strategy for real estate investors</div>
+      <div class="example-edge">He IS a real estate investor. Bought his first rental property before he started his tax firm. He knows the pain points firsthand because he lived them.</div>
+    </div>
+
+    <p style="font-size:17px;color:#555;line-height:1.7;margin-top:20px;">
+      <strong>The pattern:</strong> each person's competitive advantage comes from who they are and what they already know.
+    </p>
+  </div>
+
+  <!-- ── Section 3: No Niche Yet ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Starting Point</div>
+      <h1 class="slide-title">No Clear Niche Yet? That's Okay.</h1>
+      <p class="slide-sub">Most people under $250K don't have one. But understand two things.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>You won't scale significantly until you nail this down.</strong> You can reach $250K without a niche. Getting to $1M without creating a giant mess requires getting clear on this.
+    </div>
+
+    <div class="callout green">
+      <strong>Working broad is a sacrifice you make in exchange for data.</strong> Get a few different types of clients. See which problems you most enjoy solving. The pattern always emerges if you're paying attention.
+    </div>
+
+    <div class="callout">
+      <strong>Goal:</strong> identify 2-3 client types to test. Work with them, understand their pain points, and let the data tell you who your avatar is.
+    </div>
+  </div>
+
+  <!-- ── Section 4: Peter's Story ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Case Study</div>
+      <h1 class="slide-title">How This Played Out for Peter</h1>
+      <p class="slide-sub">The pattern always emerges — here's how it looked in practice.</p>
+    </div>
+
+    <div class="journey-card red">
+      <div class="journey-label red">$0–$350K</div>
+      <div class="journey-desc">Total generalist — churches, nonprofits, realtors, a CPA firm, a Bitcoin ATM company, a property manager, an online coach. Some got great results. Some were terrible.</div>
+    </div>
+
+    <div class="journey-card purple">
+      <div class="journey-label purple">~$350K</div>
+      <div class="journey-desc">Pattern emerged: accounting firms consistently got the most value from working with me — and I liked working with them. Started noticing the fit.</div>
+    </div>
+
+    <div class="journey-card green">
+      <div class="journey-label green">~$500K</div>
+      <div class="journey-desc">Fully committed to accounting firms only. Never looked back. Within the next 24 months: $1.5M run rate.</div>
+    </div>
+
+    <div class="quote" style="margin-top:24px;">
+      <p>Working with a broad set of clients is a sacrifice you make in exchange for information. You're paying for data on who your ideal client actually is.</p>
+    </div>
+  </div>
+
+  <!-- ── Section 5: Building Your Buy Box ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Framework</div>
+      <h1 class="slide-title">Building Your Buy Box</h1>
+      <p class="slide-sub">Two lenses for defining who you should and shouldn't take as a client.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col highlight">
+        <h3>Demographics</h3>
+        <p style="font-size:12px;color:#888;margin-bottom:10px;">Who they are on paper</p>
+        <ul>
+          <li>Industry / business type</li>
+          <li>Revenue range</li>
+          <li>Number of employees</li>
+          <li>Geography</li>
+        </ul>
+      </div>
+      <div class="compare-col green-highlight">
+        <h3 class="green">Psychographics</h3>
+        <p style="font-size:12px;color:#888;margin-bottom:10px;">How they think and behave</p>
+        <ul>
+          <li>Values growth, not just surviving</li>
+          <li>Willing to invest in the business</li>
+          <li>Coachable — acts on advice</li>
+          <li>Looking to grow, not just maintain</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Demographics tell you who to target. Psychographics tell you who will actually buy, stick around, and be a great client.</strong> You need both. A perfect demographic match who won't invest is a waste of a sales call.
+    </div>
+  </div>
+
+  <!-- ── Section 6: Non-Negotiables vs Nice-to-Haves ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Criteria</div>
+      <h1 class="slide-title">Non-Negotiables vs. Nice-to-Haves</h1>
+      <p class="slide-sub">If they can't afford your minimum, the math doesn't work — no matter how much you like them.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>Non-Negotiables (both required):</strong>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Buying power</span> <span class="step-rest">— can afford $5K-$20K/yr. Look at revenue, AGI, or headcount depending on what you offer.</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">A repeatable problem set</span> <span class="step-rest">— same problems, same system. Not custom work every time. This is what makes your firm scalable.</span></div>
+      </li>
+    </ul>
+
+    <div class="callout green" style="margin-top:24px;">
+      <strong>Nice-to-Haves (make things easier, not required):</strong>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">&check;</div>
+        <div><span class="step-bold">Same industry</span> <span class="step-rest">— more efficient marketing and delivery</span></div>
+      </li>
+      <li>
+        <div class="step-num">&check;</div>
+        <div><span class="step-bold">Local to you</span> <span class="step-rest">— easier to build trust and get referrals</span></div>
+      </li>
+      <li>
+        <div class="step-num">&check;</div>
+        <div><span class="step-bold">Personal experience in their world</span> <span class="step-rest">— huge advantage, but you can learn it over time</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Fill Out the Client Avatar Worksheet</h1>
+      <p class="slide-sub">One action item. It walks you through your competitive advantage, your buy box, and who to test first.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Fill out the Client Avatar Worksheet</strong> linked below this video. Your answers run through an AI niche selection tool — you'll get an email within 5-20 minutes with a full breakdown.
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">If you have a clear niche</div>
+        <div class="action-desc">Use the worksheet to refine it and get it written down clearly. Specificity is power.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">If you don't have a niche yet</div>
+        <div class="action-desc">The tool will give you options to research and test. Identify 2-3 client types and start working with them.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Bring it to the next module</div>
+        <div class="action-desc">Brian will walk you through building your signature offer for this exact client avatar.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Next up: Module 1.3 — Creating Your Signature Offer.</strong> Brian Mayoral will show you how to build the flat-rate package you'll sell to your avatar.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Who You Serve' },
+    { id: 'sec-1', label: 'Your Edge' },
+    { id: 'sec-2', label: 'No Niche Yet' },
+    { id: 'sec-3', label: "Peter's Story" },
+    { id: 'sec-4', label: 'Buy Box' },
+    { id: 'sec-5', label: 'Non-Negotiables' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Capture Proof — $0–$250K Toolkit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* -- Top bar -- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* -- Section nav -- */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* -- Main content -- */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* -- Slide-style heading -- */
+  .slide-header { margin-bottom: 36px; }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* -- Cards -- */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Callout box -- */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* -- Step list -- */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* -- Two-col comparison -- */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* -- Quote -- */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* -- Action items -- */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Badge -- */
+  .badge {
+    display: inline-block;
+    background: #F3ECFE;
+    color: #6800FC;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
+  /* -- Timeline -- */
+  .timeline {
+    display: flex;
+    gap: 8px;
+    margin: 32px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .timeline-item {
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 12px;
+  }
+  .timeline-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #6800FC;
+    margin: 0 auto 12px;
+  }
+  .timeline-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 6px;
+  }
+  .timeline-desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  /* -- Math box -- */
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  /* -- Nav buttons -- */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 10 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">How to Capture Proof</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- Section 1: Why Proof Matters -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Proof Is Your #1 Friend</h1>
+      <p class="slide-sub">The single biggest lever for bridging the trust gap with prospects.</p>
+    </div>
+
+    <p class="body-text">As you start to grow and scale, proof is the single biggest lever for bridging the trust gap with prospects. The more proof you have, the easier everything else gets.</p>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Landing pages convert higher</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Sales calls close easier</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Cold outreach gets responses</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Referral partners trust you faster</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>The Ryan Bakke Example:</strong> Ryan runs a tax firm. He doesn't speak to clients at any point in the process &mdash; no sales calls, no consulting calls, no emails. Just a 1-hour weekly group call. Yet people have massive trust in his brand. How? A database of 50+ case studies, reviews, and video testimonials showing he's saved clients tens of thousands in taxes. He delivered great results for years and <em>documented every win</em>.
+    </div>
+  </div>
+
+  <!-- Section 2: The Proof Hierarchy -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">The Hierarchy</div>
+      <h1 class="slide-title">Three Levels of Proof</h1>
+      <p class="slide-sub">Not all proof is created equal. Start at the bottom and work your way up.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Level 1 <span class="badge">Easiest</span></div>
+        <div class="card-value" style="font-size:20px;">Case Study Slides</div>
+        <div class="card-desc">Put together a few slides walking through a real client win. Lowest barrier to entry &mdash; you can do this today.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Level 2 <span class="badge">Gold Standard</span></div>
+        <div class="card-value" style="font-size:20px;">Video Testimonials</div>
+        <div class="card-desc">Interview-style videos with clients you've delivered great results for. Nothing builds trust faster.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Level 3 <span class="badge">Volume Play</span></div>
+        <div class="card-value" style="font-size:20px;">Online Reviews</div>
+        <div class="card-desc">Google Reviews and Trustpilot. Volume matters more than a perfect average rating.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>You don't need to have saved someone $100k in taxes.</strong> Even small, specific results are believable and build trust. "Increased take-home by 30%" beats "improved their finances."
+    </div>
+  </div>
+
+  <!-- Section 3: Level 1 — Case Studies -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Level 1</div>
+      <h1 class="slide-title">Building Your First Case Study</h1>
+      <p class="slide-sub">Three parts. Simple framework. You can do this today.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">The Client</span> <span class="step-rest">&mdash; name (or anonymized), industry, firm size. Make it relatable to your target market.</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">The Problem</span> <span class="step-rest">&mdash; what was broken before? Messy books, no cash flow visibility, missed deadlines, tax surprises.</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">The Result</span> <span class="step-rest">&mdash; specific outcomes. Numbers if possible. "Increased take-home by 30%" beats "improved their finances."</span></div>
+      </li>
+    </ul>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Before</h3>
+        <ul>
+          <li>"John had no visibility into his cash flow"</li>
+          <li>"He didn't know how much he could pay himself"</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>After</h3>
+        <ul>
+          <li>"Today he has a systemized financial plan"</li>
+          <li>"Increased his take-home pay by 30%"</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-style:italic; color:#888;">Any bookkeeping client you do even a halfway decent job for, you should be able to get a case study like this. You're just documenting the win in a way that's believable.</p>
+  </div>
+
+  <!-- Section 4: Level 2 — Video Testimonials -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Level 2</div>
+      <h1 class="slide-title">Video Testimonials</h1>
+      <p class="slide-sub">The most powerful form of proof. Nothing builds trust faster than a real person describing real results on camera.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Instead of YOU saying how great you are,</strong> the prospect hears it directly from another customer. There's something about video that written testimonials just can't match &mdash; the prospect can see a real person, hear their voice, watch their body language.
+    </div>
+
+    <div class="math-box" style="text-align:center;">
+      <div style="font-family:'Merriweather',Georgia,serif; font-size:56px; font-weight:700; color:#6800FC;">8&ndash;10</div>
+      <div style="font-size:15px; color:#555; margin-top:4px;">video testimonials is your target</div>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Quality keeps going up</span> <span class="step-rest">&mdash; as you collect them, you get better at asking and your clients give better answers</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Cycle the weaker ones out</span> <span class="step-rest">&mdash; as you get better testimonials</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">After 8&ndash;10, it's diminishing returns</span> <span class="step-rest">&mdash; shift your effort to online reviews</span></div>
+      </li>
+    </ul>
+
+    <div class="callout" style="font-size:13px;">
+      Full process covered in the "Getting Testimonial Videos" module &mdash; Riverside FM, the Before/After/Bridge interview framework, and outreach templates.
+    </div>
+  </div>
+
+  <!-- Section 5: Level 3 — Online Reviews -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Level 3</div>
+      <h1 class="slide-title">Online Reviews &mdash; Volume Wins</h1>
+      <p class="slide-sub">Google Reviews and Trustpilot. Volume matters more than a perfect average.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Volume matters more than average rating</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Stay above 4.0, ideally above 4.5</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Collect as many as humanly possible</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Offer incentives</span> <span class="step-rest">&mdash; gift cards make people feel good about leaving a review</span></div>
+      </li>
+    </ul>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 16px;">The Mexican Restaurant Example</h3>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 style="text-align:center; color:#555;">4.9 Stars</h3>
+        <p style="text-align:center; font-size:36px; font-weight:700; font-family:'Merriweather',Georgia,serif; margin:8px 0;">4.9 &#9733;</p>
+        <p style="text-align:center; font-size:14px; color:#888;">100 reviews</p>
+        <p style="text-align:center; font-size:13px; color:#888; font-style:italic; margin-top:12px;">Looks okay...</p>
+      </div>
+      <div class="compare-col highlight">
+        <h3 style="text-align:center;">4.5 Stars</h3>
+        <p style="text-align:center; font-size:36px; font-weight:700; font-family:'Merriweather',Georgia,serif; margin:8px 0;">4.5 &#9733;</p>
+        <p style="text-align:center; font-size:14px; color:#6800FC; font-weight:700;">10,000 reviews</p>
+        <p style="text-align:center; font-size:13px; color:#6800FC; font-weight:700; margin-top:12px;">Must be amazing.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>People trust volume.</strong> A slightly lower average with massive volume signals a proven, established business. Stop obsessing over all 5-star reviews and start focusing on getting as many reviews as possible.
+    </div>
+  </div>
+
+  <!-- Section 6: Your Process Right Now -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Your System</div>
+      <h1 class="slide-title">The 3-Step Habit</h1>
+      <p class="slide-sub">Don't wait for amazing results. Start documenting today.</p>
+    </div>
+
+    <p class="body-text">After every client engagement that goes well, follow this process:</p>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div>
+          <span class="step-bold">Document the Win</span><br>
+          <span class="step-rest">Write down the before/after internally. Even just a Google Doc. Capture the specifics while they're fresh.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div>
+          <span class="step-bold">Ask for a Review</span><br>
+          <span class="step-rest">Request a written testimonial or online review (Google / Trustpilot). Make it easy &mdash; send them a direct link.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div>
+          <span class="step-bold">Ask for a Video</span><br>
+          <span class="step-rest">If they're enthusiastic, ask if they'd be open to a short video testimonial. Not everyone will say yes &mdash; that's fine.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout red">
+      <strong>Make it a habit, not a project.</strong> Every time you deliver a good result, capture it immediately. Don't wait and try to "batch" testimonials later &mdash; you'll never get around to it.
+    </div>
+
+    <div class="callout green">
+      <strong>Even small wins count.</strong> "We helped John get visibility into his cash flow for the first time" is a real proof point. And here's the timing trick: when a client says "wow, this is so helpful" or "I wish I'd found you sooner" &mdash; that's your moment. Ask right then.
+    </div>
+  </div>
+
+  <!-- Section 7: Where Proof Gets Used & Compounding -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Leverage</div>
+      <h1 class="slide-title">Where Proof Gets Used</h1>
+      <p class="slide-sub">Every piece of proof feeds into multiple marketing assets. One testimonial gets used five different ways.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Landing Page</div>
+        <div class="card-desc">Add quotes and results to your pages for higher conversion rates.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Email Sequences</div>
+        <div class="card-desc">Drip testimonials to leads before a sales call with the Proof Stack Email Sequence.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Sales Calls</div>
+        <div class="card-desc">Tell specific client stories during your calls to build credibility in real time.</div>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Partner Outreach</div>
+        <div class="card-desc">"Hey, here's what we did for a client like yours" makes affiliate outreach far more compelling.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Social Media</div>
+        <div class="card-desc">Before/after case study posts are among the highest-performing content you can create.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 16px;">The Compounding Effect</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" style="width:20px; height:20px;"></div>
+        <div class="timeline-label">Month 1</div>
+        <div class="timeline-desc">1 case study</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="width:28px; height:28px;"></div>
+        <div class="timeline-label">Month 3</div>
+        <div class="timeline-desc">3 case studies, 1 video</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="width:36px; height:36px;"></div>
+        <div class="timeline-label">Month 6</div>
+        <div class="timeline-desc">5 case studies, 3 videos, 20 reviews</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="width:48px; height:48px;"></div>
+        <div class="timeline-label">Year 1+</div>
+        <div class="timeline-desc">10+ case studies, 8 videos, 100+ reviews</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Ryan didn't get to 50+ case studies overnight.</strong> He documented wins for years. The earlier you start, the bigger your proof arsenal when you need it for paid ads, funnels, and scale.
+    </div>
+  </div>
+
+  <!-- Section 8: Action Items -->
+  <div class="section" id="sec-7">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Steps</div>
+      <h1 class="slide-title">Action Items</h1>
+      <p class="slide-sub">Four things to complete this week.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Client Win Inventory</div>
+        <div class="action-desc">List every client you've gotten a positive result for, even small wins. This is your proof pipeline &mdash; you can't capture proof if you don't know who to ask.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Create Your First Case Study</div>
+        <div class="action-desc">Pick your best result and create 2&ndash;3 slides telling the story: before, after, how. Keep it simple.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Ask 3 Clients for Reviews</div>
+        <div class="action-desc">Request a Google or Trustpilot review this week. Send them a direct link. Offer a gift card if needed.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Video Testimonial Shortlist</div>
+        <div class="action-desc">Identify 2&ndash;3 clients who might be willing to do a video testimonial. You don't need to ask yet &mdash; just identify them.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Start capturing proof today.</strong> Every testimonial, review, and case study you collect makes the next client easier to close. Don't wait until you have perfect results. Go do those action items this week.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Why Proof' },
+    { id: 'sec-1', label: 'Proof Hierarchy' },
+    { id: 'sec-2', label: 'Case Studies' },
+    { id: 'sec-3', label: 'Video Testimonials' },
+    { id: 'sec-4', label: 'Online Reviews' },
+    { id: 'sec-5', label: '3-Step Habit' },
+    { id: 'sec-6', label: 'Where It Goes' },
+    { id: 'sec-7', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

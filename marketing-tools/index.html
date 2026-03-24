@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Tools You'll Need — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .card-num {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 6px;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    color: #6800FC;
+  }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '\2014 '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #6800FC;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Bullet list ── */
+  .bullet-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .bullet-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '\2022';
+    color: #6800FC;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  /* ── Table ── */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+  .cost-table th {
+    background: #6800FC;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 12px 14px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+  .cost-table th:first-child { border-radius: 8px 0 0 0; }
+  .cost-table th:last-child { border-radius: 0 8px 0 0; }
+  .cost-table td {
+    background: #fff;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+    border-bottom: 1px solid #E0E0E0;
+    vertical-align: top;
+  }
+  .cost-table tr:last-child td {
+    font-weight: 700;
+  }
+  .cost-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  .cost-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+  /* ── Options list ── */
+  .option-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .option-item:last-child { border-bottom: none; }
+  .option-name {
+    font-weight: 700;
+    color: #121212;
+  }
+  .option-detail {
+    color: #666;
+  }
+
+  /* ── Pipeline visual ── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 28px 0;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .pipe-stage {
+    background: #6800FC;
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    min-width: 90px;
+    line-height: 1.3;
+  }
+  .pipe-stage.green { background: #57A04D; }
+  .pipe-arrow {
+    color: #BBBBBB;
+    font-size: 16px;
+    padding: 0 2px;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 07 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">Marketing Tools You'll Need</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: The Four Tools ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Overview</div>
+      <h1 class="slide-title">You Need Four Tools</h1>
+      <p class="slide-sub">Don't overthink this. The tool doesn't matter nearly as much as actually using it.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-num">01</div>
+        <div class="card-title">Landing Page Builder</div>
+        <div class="card-desc">One page, one CTA.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-num">02</div>
+        <div class="card-title">CRM</div>
+        <div class="card-desc">Track every lead and follow-up.</div>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-num">03</div>
+        <div class="card-title">Email Autoresponder</div>
+        <div class="card-desc">Automated sequences.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-num">04</div>
+        <div class="card-title">Calendar Booking</div>
+        <div class="card-desc">Let prospects self-book.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The best tool is the one you'll actually use consistently.</strong> Don't spend weeks comparing options when you should be spending that time getting in front of potential clients.
+    </div>
+  </div>
+
+  <!-- ── Section 2: Landing Page ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Tool 01</div>
+      <h1 class="slide-title">Landing Page Builder</h1>
+      <p class="slide-sub">One page that explains who you are, who you serve, and how to book a call.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Headline that speaks directly to your ideal client</li>
+      <li>Brief description of what you do and who you help</li>
+      <li>Social proof &mdash; even just 1&ndash;2 early wins or testimonials</li>
+      <li>One clear CTA: book a call</li>
+    </ul>
+
+    <div class="callout red">
+      <strong>Not a full website. A landing page.</strong> One page, one call-to-action. Don't build a 12-page site &mdash; that's procrastination disguised as productivity.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:20px;">Options:</p>
+    <div class="option-item">
+      <span class="option-name">Carrd</span> <span class="option-detail">&mdash; $19/yr, dead simple one-page sites</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">Leadpages</span> <span class="option-detail">&mdash; Drag-and-drop, optimized for conversions</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">ClickFunnels</span> <span class="option-detail">&mdash; Full funnel builder, overkill at this stage</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">WordPress / Squarespace</span> <span class="option-detail">&mdash; More flexibility, more complexity</span>
+    </div>
+
+    <div class="callout green" style="margin-top:20px;">
+      <strong>At this stage, Carrd at $19/year is all most people need.</strong> Don't let the tool become the project.
+    </div>
+  </div>
+
+  <!-- ── Section 3: CRM ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Tool 02</div>
+      <h1 class="slide-title">CRM (Customer Relationship Management)</h1>
+      <p class="slide-sub">A system to track every lead, where they are in the pipeline, and what the next step is.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Without a CRM, leads fall through the cracks</li>
+      <li>You forget to follow up &mdash; and follow-up is where deals close</li>
+      <li>You lose track of who said what and when</li>
+      <li>Even a well-organized spreadsheet works at first &mdash; a real CRM is better</li>
+    </ul>
+
+    <div class="callout">
+      <strong>The CRM is the most important tool on this list.</strong> Everything else feeds into it.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:20px;">Options:</p>
+    <div class="option-item">
+      <span class="option-name">HubSpot</span> <span class="option-detail">&mdash; Free tier available, great for getting started</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">GoHighLevel</span> <span class="option-detail">&mdash; ~$97/mo, all-in-one platform, popular in agencies</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">Firm Pillar</span> <span class="option-detail">&mdash; Purpose-built for accounting firms</span>
+    </div>
+    <div class="option-item">
+      <span class="option-name">Salesforce</span> <span class="option-detail">&mdash; Enterprise-grade, overkill at this stage</span>
+    </div>
+  </div>
+
+  <!-- ── Section 4: Email & Calendar ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Tools 03 &amp; 04</div>
+      <h1 class="slide-title">Email Autoresponder &amp; Calendar Booking</h1>
+      <p class="slide-sub">The two tools that automate your prospect experience.</p>
+    </div>
+
+    <p class="body-text" style="font-weight:700;color:#6800FC;">Email Autoresponder</p>
+    <p class="body-text">When someone opts in or books a call, emails should fire automatically.</p>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3>Welcome Sequence</h3>
+        <ul>
+          <li>Fires after opt-in</li>
+          <li>Introduces you, builds credibility</li>
+          <li>Nudges toward booking a call</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h3>Booking Confirmation</h3>
+        <ul>
+          <li>Fires after call is booked</li>
+          <li>Confirms details, sends reminders</li>
+          <li>Reduces no-shows significantly</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="color:#999;font-size:13px;margin-top:4px;">Options: Mailchimp | ConvertKit | ActiveCampaign | Built into your CRM</p>
+
+    <p class="body-text" style="font-weight:700;color:#6800FC;margin-top:28px;">Calendar Booking Software</p>
+    <p class="body-text">Prospects need to book a call without a back-and-forth email chain.</p>
+
+    <ul class="bullet-list">
+      <li>Connect it directly to your landing page CTA</li>
+      <li>Set buffer times between calls</li>
+      <li>Set availability windows &mdash; only show times you want</li>
+      <li>Automatic reminders reduce no-shows significantly</li>
+    </ul>
+
+    <p class="body-text" style="color:#999;font-size:13px;margin-top:4px;">Options: Calendly (free tier) | Cal.com | Acuity | Built into your CRM</p>
+  </div>
+
+  <!-- ── Section 5: Cost Comparison ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">What It Costs</div>
+      <h1 class="slide-title">Cost Comparison</h1>
+      <p class="slide-sub">Three paths. Same four tools.</p>
+    </div>
+
+    <table class="cost-table">
+      <thead>
+        <tr><th></th><th>A La Carte</th><th>GoHighLevel</th><th>Firm Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Landing Page</td><td>Carrd &mdash; $19/yr</td><td>Included</td><td>Included</td></tr>
+        <tr><td>CRM</td><td>HubSpot &mdash; Free</td><td>Included</td><td>Included</td></tr>
+        <tr><td>Email</td><td>Mailchimp &mdash; Free</td><td>Included</td><td>Included</td></tr>
+        <tr><td>Calendar</td><td>Calendly &mdash; Free</td><td>Included</td><td>Included</td></tr>
+        <tr><td>Total</td><td>~$2/mo</td><td>~$97/mo</td><td>See pricing</td></tr>
+      </tbody>
+    </table>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3>A La Carte</h3>
+        <ul>
+          <li>Cheapest to start (~$2/mo)</li>
+          <li>Flexible &mdash; swap any tool</li>
+          <li>More setup and integration work</li>
+          <li>Tools don't talk to each other</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h3>All-in-One</h3>
+        <ul>
+          <li>Everything integrated out of the box</li>
+          <li>Less tech headaches</li>
+          <li>Higher monthly cost</li>
+          <li>Locked into one ecosystem</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Both paths work.</strong> The a la carte stack is fine if you're bootstrapping. The all-in-one saves time if you can afford it.
+    </div>
+  </div>
+
+  <!-- ── Section 6: CRM Pipeline & Recommendation ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Setup</div>
+      <h1 class="slide-title">Your CRM Pipeline Stages</h1>
+      <p class="slide-sub">Set these up in whichever CRM you choose.</p>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-stage">New Lead</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-stage">Contacted</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-stage">Call<br>Booked</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-stage">Call<br>Completed</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-stage">Proposal<br>Sent</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-stage green">Closed<br>Won</div>
+    </div>
+
+    <p class="body-text" style="text-align:center;color:#999;font-size:13px;font-style:italic;margin-top:-8px;">+ "Closed Lost" &mdash; don't delete lost deals, track them for future follow-up</p>
+
+    <ul class="bullet-list" style="margin-top:20px;">
+      <li>Every lead enters at "New Lead" &mdash; no exceptions</li>
+      <li>Move leads forward as you take action, not when they respond</li>
+      <li>Review your pipeline weekly &mdash; what's stuck?</li>
+      <li>Full CRM setup covered in the "Set Up Your CRM" module</li>
+    </ul>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Our Recommendation: Firm Pillar</strong><br>
+      Purpose-built for accounting firms. CRM pipeline pre-configured for accounting sales cycles. Email sequences and templates built for your industry. Landing pages, calendar booking, automations &mdash; all included. If budget is tight, the a la carte stack works perfectly fine.
+    </div>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Pick One Path and Set It Up This Week</h1>
+      <p class="slide-sub">Don't spend a month comparing tools. The best marketing tool is the one you'll actually use.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Choose Your Stack</div>
+        <div class="action-desc">A la carte, GoHighLevel, or Firm Pillar. Decide today &mdash; not next week. The longer you research, the longer you're not marketing.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Build Your Landing Page</div>
+        <div class="action-desc">Headline, description, social proof, CTA. Doesn't need to be perfect &mdash; needs to exist.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Set Up Your CRM Pipeline</div>
+        <div class="action-desc">Six stages: New Lead, Contacted, Call Booked, Call Completed, Proposal Sent, Closed Won.</div>
+      </div>
+    </div>
+
+    <div class="quote" style="margin-top:28px;">
+      <p>Pick one path and set it up this week. Don't spend a month comparing tools. The best marketing tool is the one you'll actually use.</p>
+    </div>
+
+    <div class="callout" style="margin-top:20px;">
+      <strong>Get all of this done this week.</strong> Stop researching, start implementing. In the next module, we'll dive into how to actually use these tools to start generating leads.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Four Tools' },
+    { id: 'sec-1', label: 'Landing Page' },
+    { id: 'sec-2', label: 'CRM' },
+    { id: 'sec-3', label: 'Email & Calendar' },
+    { id: 'sec-4', label: 'Cost Comparison' },
+    { id: 'sec-5', label: 'Pipeline Setup' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

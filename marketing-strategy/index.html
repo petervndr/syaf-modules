@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Strategy Overview — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .card-num {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 6px;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col.red-border {
+    border-color: #8F281C;
+    background: #FDF2F1;
+  }
+  .compare-col.green-border {
+    border-color: #57A04D;
+    background: #F4FEF7;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '\2014 '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Trust gap visual ── */
+  .trust-gap-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 28px 0;
+    flex-wrap: wrap;
+  }
+  .trust-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 16px 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .trust-box.red-zone {
+    background: #FDF2F1;
+    border-color: #8F281C;
+    color: #8F281C;
+    padding: 20px 32px;
+    flex-grow: 1;
+    max-width: 280px;
+  }
+  .trust-box.green-zone {
+    border-color: #57A04D;
+    color: #57A04D;
+  }
+  .trust-arrow {
+    color: #BBB;
+    font-size: 20px;
+  }
+  .trust-sub {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* ── Bullet list ── */
+  .bullet-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .bullet-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '\2022';
+    color: #6800FC;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  /* ── Math box ── */
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .math-headline {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+  }
+  .math-headline-sub { font-size: 13px; color: #999; margin-bottom: 12px; }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* ── Bar comparison ── */
+  .bar-compare {
+    margin: 24px 0;
+  }
+  .bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .bar {
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .bar.small {
+    background: #F4FEF7;
+    border: 1px solid #57A04D;
+    color: #57A04D;
+    width: 35%;
+  }
+  .bar.large {
+    background: #FDF2F1;
+    border: 1px solid #8F281C;
+    color: #8F281C;
+    width: 80%;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 06 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">Marketing Strategy Overview</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: Fantasy vs Reality ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Reality Check</div>
+      <h1 class="slide-title">What Marketing Looks Like Under $250K</h1>
+      <p class="slide-sub">Forget what you've seen online. At this stage, you need a fundamentally different approach.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>At this stage, these are NOT for you:</strong><br>
+      &cross; Paid ads and funnels<br>
+      &cross; Hiring a marketing agency<br>
+      &cross; Building a massive online presence
+    </div>
+
+    <div class="callout">
+      <strong>"Leveraged" or "outsourced" marketing is probably not the mode for you right now.</strong> You don't have the budget, the proof, or the volume to make any of that work yet.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:24px;">The only 3 things you need:</p>
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-num">01</div>
+        <div class="card-title">A One-Page Website</div>
+        <div class="card-desc">Nothing fancy. Just enough to show you exist and how to contact you.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-num">02</div>
+        <div class="card-title">A Good Offer</div>
+        <div class="card-desc">You already built this with Brian. A clear, valuable package at $5k&ndash;$20k/yr.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-num">03</div>
+        <div class="card-title">A Way to Get In Front of People</div>
+        <div class="card-desc">This is where the rest of this section focuses.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2: The Trust Gap ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">The Core Problem</div>
+      <h1 class="slide-title">The Trust Gap</h1>
+      <p class="slide-sub">The distance between where a stranger is now and where they need to be to hand you $5k&ndash;$20k.</p>
+    </div>
+
+    <div class="trust-gap-visual">
+      <div class="trust-box">
+        Stranger
+        <div class="trust-sub">No relationship</div>
+      </div>
+      <div class="trust-arrow">&rarr;</div>
+      <div class="trust-box red-zone">
+        TRUST GAP
+        <div class="trust-sub">No testimonials. No case studies. No reputation &mdash; yet.</div>
+      </div>
+      <div class="trust-arrow">&rarr;</div>
+      <div class="trust-box green-zone">
+        $5k&ndash;$20k Client
+        <div class="trust-sub">Paying customer</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>At your stage, this gap is MASSIVE</strong> because you have almost no social proof. You can't just show a wall of testimonials and case studies because you don't have them yet.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:24px;">Your trust gap is bigger than theirs:</p>
+    <div class="bar-compare">
+      <div class="bar-label">Established firm ($500k+)</div>
+      <div class="bar small">Small trust gap</div>
+      <div class="bar-label">You right now (under $250k)</div>
+      <div class="bar large">MASSIVE trust gap</div>
+    </div>
+
+    <div class="callout red">
+      <strong>You can't market the same way they do.</strong> You need a different strategy to bridge that gap.
+    </div>
+  </div>
+
+  <!-- ── Section 3: Two Bridges ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Strategy</div>
+      <h1 class="slide-title">Two Bridges Across the Trust Gap</h1>
+      <p class="slide-sub">Two ways to build trust without a wall of proof behind you.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col highlight">
+        <h3>Leverage Others' Trust</h3>
+        <ul>
+          <li>Affiliate partners</li>
+          <li>JV workshops</li>
+          <li>Referrals from trusted sources</li>
+          <li>Borrow credibility from people your prospects already trust</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Be In Person</h3>
+        <ul>
+          <li>Events and networking</li>
+          <li>Local workshops</li>
+          <li>Face-to-face meetings</li>
+          <li>In-person trust is 10x easier to build than online trust</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Best case: combine both.</strong> Partner with someone local who has your ideal audience, and deliver value face-to-face.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:24px;">Why local beats online right now:</p>
+    <div class="compare">
+      <div class="compare-col red-border">
+        <h3 class="red">Online (Right Now)</h3>
+        <ul>
+          <li>Competing against thousands</li>
+          <li>Enormous trust gap with strangers</li>
+          <li>Need proof you don't have</li>
+          <li>Expensive ads, low conversion</li>
+          <li>Everyone's doing it</li>
+        </ul>
+      </div>
+      <div class="compare-col green-border">
+        <h3 class="green">Local &amp; In-Person</h3>
+        <ul>
+          <li>Way less competition</li>
+          <li>Trust gap shrinks dramatically</li>
+          <li>Handshake > Instagram ad</li>
+          <li>Free to start</li>
+          <li>Relationship-based selling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 4: The Core Four ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Lead Generation</div>
+      <h1 class="slide-title">The Core Four</h1>
+      <p class="slide-sub">There are only four ways to get leads. At your stage, focus on the ones that don't require money or scale.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card green-accent">
+        <div class="card-label green">Focus Here</div>
+        <div class="card-title">Warm Outreach</div>
+        <div class="card-desc">Reaching out to people who already know you &mdash; friends, past colleagues, contacts.</div>
+      </div>
+      <div class="card green-accent">
+        <div class="card-label green">Focus Here</div>
+        <div class="card-title">Cold Outreach</div>
+        <div class="card-desc">Reaching out to strangers &mdash; LinkedIn messages, cold email, direct outreach.</div>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card">
+        <div class="card-label" style="color:#999;">Later</div>
+        <div class="card-title">Free Content</div>
+        <div class="card-desc">Social media, YouTube, podcasting &mdash; building an audience over time.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:#999;">Later</div>
+        <div class="card-title">Paid Content (Ads)</div>
+        <div class="card-desc">Facebook, Instagram, Google ads &mdash; paying for attention.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Don't try to master all four channels.</strong> Pick the 1&ndash;2 that fit your situation and go hard. At under $250k, focus on warm and cold outreach.
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:24px;">Plus: The Lead Getters</p>
+    <div class="callout">
+      <strong>Referrals</strong> &mdash; Happy clients telling others about you<br>
+      <strong>Affiliates / Partners</strong> &mdash; People who send clients for mutual benefit
+    </div>
+    <p class="body-text" style="color:#999;font-size:13px;">Employees and agencies come later when you have revenue to support them.</p>
+  </div>
+
+  <!-- ── Section 5: The Ryan Bakke Story ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Case Study</div>
+      <h1 class="slide-title">The Ryan Bakke Story</h1>
+      <p class="slide-sub">How one strategy generated $500k&ndash;$1M in revenue.</p>
+    </div>
+
+    <div class="math-box">
+      <div class="math-headline">$500k&ndash;$1M</div>
+      <div class="math-headline-sub">in revenue from one strategy: free JV workshops</div>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Find people with an audience of your ideal clients</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Pitch:</span> <span class="step-rest">"I'd love to do a free workshop for your audience"</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Deliver massive value</span> <span class="step-rest">&mdash; no catch, no hard sell</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Repeat.</span> <span class="step-rest">Over and over.</span></div>
+      </li>
+    </ul>
+
+    <div class="quote">
+      <p>I'd love to do a free workshop teaching tax strategies for your audience. No catch, no hook &mdash; just giving value.</p>
+      <div class="quote-attr">&mdash; The JV Workshop Pitch</div>
+    </div>
+
+    <p class="body-text" style="font-weight:600;">Why this works:</p>
+    <ul class="bullet-list">
+      <li>The partner looks good (free value for their audience)</li>
+      <li>You get access to a warm, pre-qualified audience</li>
+      <li>Attendees experience your expertise firsthand</li>
+      <li>Trust transfers from the partner to you</li>
+    </ul>
+  </div>
+
+  <!-- ── Section 6: Examples & Playbook ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">In Practice</div>
+      <h1 class="slide-title">What This Looks Like</h1>
+      <p class="slide-sub">Concrete examples and your under-$250k marketing playbook.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon" style="background:#F3ECFE;color:#6800FC;font-weight:700;font-size:12px;">Ex</div>
+      <div>
+        <div class="action-title">If you serve: Marketing Agencies</div>
+        <div class="action-desc">Host a workshop at a local podcast studio where agency owners hang out.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-icon" style="background:#F3ECFE;color:#6800FC;font-weight:700;font-size:12px;">Ex</div>
+      <div>
+        <div class="action-title">If you serve: Attorneys</div>
+        <div class="action-desc">Partner with a local business law firm for a lunch-and-learn on tax strategy.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-icon" style="background:#F3ECFE;color:#6800FC;font-weight:700;font-size:12px;">Ex</div>
+      <div>
+        <div class="action-title">If you serve: Real Estate Investors</div>
+        <div class="action-desc">Co-host with a property management company on tax-saving strategies.</div>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-weight:600;margin-top:28px;">Your Under-$250k Marketing Playbook:</p>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Start with warm outreach</span> <span class="step-rest">&mdash; your personal network, past colleagues, anyone who knows you</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Build JV/affiliate partnerships</span> <span class="step-rest">&mdash; find 3&ndash;5 people who already serve your ideal clients</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Do free local workshops</span> <span class="step-rest">&mdash; deliver value in-person where trust builds fastest</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Ask for referrals</span> <span class="step-rest">&mdash; every happy client is a lead source, but you have to ask</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── Section 7: What's Next ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Coming Up</div>
+      <h1 class="slide-title">What's Coming Next</h1>
+      <p class="slide-sub">The next modules go deep on each strategy.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Marketing Tools</strong> &mdash; The tech stack you actually need (less than you think)
+    </div>
+
+    <ul class="bullet-list">
+      <li>Affiliate Partner Outreach &mdash; Scripts, targeting, follow-up</li>
+      <li>Events &amp; Networking &mdash; How to find, attend, and host events that generate clients</li>
+      <li>Getting Referrals &mdash; Systems to turn every happy client into a lead source</li>
+      <li>Capturing Proof &mdash; How to get testimonials from your first 5 clients</li>
+    </ul>
+
+    <p class="body-text" style="font-weight:600;margin-top:28px;">But first &mdash; your action items:</p>
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Trust Gap Audit</div>
+        <div class="action-desc">On a scale of 1&ndash;10, how much trust have you built? What proof do you have?</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Channel Selection</div>
+        <div class="action-desc">Which 1&ndash;2 lead sources from the Core Four are most accessible to you RIGHT NOW?</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Local Opportunity Brainstorm</div>
+        <div class="action-desc">List 3&ndash;5 local events, groups, or partners where your ideal clients gather.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <strong>Keep it simple. Get in front of people.</strong> One-page website. Good offer. A way to reach people. That's the entire playbook at this stage.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Reality Check' },
+    { id: 'sec-1', label: 'Trust Gap' },
+    { id: 'sec-2', label: 'Two Bridges' },
+    { id: 'sec-3', label: 'Core Four' },
+    { id: 'sec-4', label: 'Case Study' },
+    { id: 'sec-5', label: 'Playbook' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

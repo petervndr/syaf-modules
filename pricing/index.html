@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Fundamentals — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* ── Math breakdown ── */
+  .math-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #EBEBEB;
+    font-size: 14px;
+  }
+  .math-row:last-child { border-bottom: none; }
+  .math-label { color: #888; }
+  .math-value { font-weight: 700; color: #121212; font-size: 16px; }
+  .math-value.purple { color: #6800FC; }
+  .math-value.green { color: #2E7D32; }
+  .math-value.red { color: #8F281C; }
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .math-headline {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+  }
+  .math-headline-sub { font-size: 13px; color: #999; margin-bottom: 20px; }
+
+  /* ── Bullet list ── */
+  .bullet-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .bullet-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before { content: '— '; color: #BBB; }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 1.2 &nbsp;&middot;&nbsp; $0–$250K Toolkit</span>
+  <span class="topbar-title">Pricing Fundamentals</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: Everything Is Downstream ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Everything Is Downstream from Pricing</h1>
+      <p class="slide-sub">How you price determines who you attract, how profitable you are, and whether the business is worth running.</p>
+    </div>
+
+    <div class="quote">
+      <p>Offer Value &times; Client Avatar Need = Your Price</p>
+    </div>
+
+    <p style="font-size:17px;color:#555;line-height:1.7;margin:20px 0;">
+      Before we get into offers, avatars, or marketing — we need to talk about pricing. Not just what to charge, but why most accountants are using the wrong model entirely. Most accountants price wrong — not because they're bad at math, but because they're using the wrong model.
+    </p>
+
+    <div class="callout">
+      <strong>Pricing is the intersection of two things:</strong> the value of your offer and the need of your client avatar. Get this right, and everything else — who your clients are, how much you take home, how hard you work — flows from here.
+    </div>
+  </div>
+
+  <!-- ── Section 2: Pricing Models That Don't Scale ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Common Models</div>
+      <h1 class="slide-title">Three Models That Don't Scale</h1>
+      <p class="slide-sub">Hourly, menu, and value-based pricing all break down for the same reason.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card red-accent">
+        <div class="card-label red">Model #1: Hourly</div>
+        <div class="card-desc" style="margin-top:8px;">
+          You charge by the hour. <strong>The problem:</strong> the faster and better you get at your job, the less you make. Efficiency is penalized. There's also a hard ceiling — there are only so many hours in a year. Hourly pricing cannot scale.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card red-accent">
+        <div class="card-label red">Model #2: Menu Pricing</div>
+        <div class="card-desc" style="margin-top:8px;">
+          A set price for each service, bundled together. <strong>The problem:</strong> clients can see each line item and start negotiating. "Do I really need this part?" They pick the package apart until they get to the price they want.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card red-accent">
+        <div class="card-label red">Model #3: Value-Based</div>
+        <div class="card-desc" style="margin-top:8px;">
+          Charge based on the value you create — save them $100K, charge $25K. <strong>The problem:</strong> you have to review their books before you can quote. That's free work before the sale — and every engagement is custom-quoted, so you can never build a repeatable sales process.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout red">
+      <strong>All three models share the same flaw:</strong> they don't scale. You can't train someone else to sell them, and you can't build a repeatable process around them.
+    </div>
+  </div>
+
+  <!-- ── Section 3: Hybrid Pricing ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">The Recommendation</div>
+      <h1 class="slide-title">Hybrid Pricing</h1>
+      <p class="slide-sub">Flat-rate packages — priced based on the generalized value to your ideal client avatar. Not based on what it costs you to deliver.</p>
+    </div>
+
+    <div class="callout">
+      <strong>The structure:</strong> One upfront engagement (the diagnostic) — then ongoing services at a flat monthly or annual rate. It's repeatable, scalable, and easy to sell.
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Upfront diagnostic</span> <span class="step-rest">— you get paid before you do the work</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Flat-rate ongoing services</span> <span class="step-rest">— recurring revenue that compounds over time</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Same price for every qualified prospect</span> <span class="step-rest">— easier to sell, easier to train someone else to sell</span></div>
+      </li>
+    </ul>
+
+    <div class="callout red">
+      <strong>"Raise your prices" is incomplete advice.</strong> If you're in front of the wrong people, raising rates just loses those clients. To charge higher prices, you have to change WHO you're serving — not just the number on the invoice.
+    </div>
+  </div>
+
+  <!-- ── Section 4: Examples ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Real Examples</div>
+      <h1 class="slide-title">Hybrid Pricing in Practice</h1>
+      <p class="slide-sub">Three real offer structures showing the upfront + ongoing model.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Tax Advisory</div>
+        <div class="card-value">$4,995</div>
+        <div class="card-desc">Upfront: Tax Blueprint</div>
+        <div style="margin-top:12px;font-size:13px;color:#555;line-height:1.6;">
+          <strong>Ongoing:</strong> Annual Tax Planning at $12K/yr + Tax Preparation at $3K/yr
+        </div>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Bookkeeping</div>
+        <div class="card-value">$3,995</div>
+        <div class="card-desc">Upfront: Finance Dashboard Setup</div>
+        <div style="margin-top:12px;font-size:13px;color:#555;line-height:1.6;">
+          <strong>Ongoing:</strong> Monthly Bookkeeping at $1,000/mo + Tax Preparation at $3K/yr
+        </div>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">CFO Services</div>
+        <div class="card-value">$7,995</div>
+        <div class="card-desc">Upfront: CFO Ops Diagnostic</div>
+        <div style="margin-top:12px;font-size:13px;color:#555;line-height:1.6;">
+          <strong>Ongoing:</strong> CFO Services at $3K/mo + Monthly Bookkeeping at $1K/mo<br>
+          That's over <strong>$48K/yr in recurring revenue</strong> from a single client.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The pattern:</strong> Every engagement starts clean, you're paid first, and the recurring revenue compounds. The client gets a clear starting point. You get a natural path forward.
+    </div>
+  </div>
+
+  <!-- ── Section 5: The Sweet Spot ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Target Range</div>
+      <h1 class="slide-title">$5K–$20K Per Client Per Year</h1>
+      <p class="slide-sub">That middle band is where you get to $250K without needing hundreds of clients.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Below $5K/yr</h3>
+        <ul>
+          <li>You're stealing from your future self</li>
+          <li>A $200/mo client takes as many touchpoints as a $1,000/mo client</li>
+          <li>Time spent on marketing will land you the better client</li>
+          <li>The math doesn't work at scale</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <h3 class="red">Above $20K/yr</h3>
+        <ul>
+          <li>More demanding than what you want right now</li>
+          <li>Great target for scaling from $1M to $2M</li>
+          <li>Not for getting from zero to $250K</li>
+          <li>Higher expectations, more complex needs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="math-box">
+      <div class="math-headline">$5K–$20K</div>
+      <div class="math-headline-sub">Per client, per year</div>
+      <div class="math-row">
+        <span class="math-label">At $10K average per client</span>
+        <span class="math-value purple">25 clients = $250K</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">At $15K average per client</span>
+        <span class="math-value purple">17 clients = $250K</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">At $20K average per client</span>
+        <span class="math-value purple">13 clients = $250K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 6: The Bifurcation Problem ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Common Trap</div>
+      <h1 class="slide-title">The Bifurcation Problem</h1>
+      <p class="slide-sub">When Ryan Bakke acquires accounting firms, the first thing he looks at is the revenue-to-client ratio.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>What he finds almost every time:</strong> a small group of clients at $10K/yr and a massive swath at $250–$500/yr. You could cut half the client base and only lose ~20% of revenue.
+    </div>
+
+    <p style="font-size:17px;color:#555;line-height:1.7;margin:20px 0;">
+      The low-paying clients are consuming the most time and generating the least return. They require the same number of touchpoints — emails, calls, check-ins — but at a fraction of the revenue.
+    </p>
+
+    <div class="callout green">
+      <strong>Your advantage starting from scratch:</strong> you get to build it right from day one. No mess to clean up later. No legacy clients at $200/month dragging you down.
+    </div>
+  </div>
+
+  <!-- ── Section 7: Key Takeaways & Action ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Takeaways</div>
+      <h1 class="slide-title">Key Takeaways</h1>
+      <p class="slide-sub">Five things to lock in before moving on.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Pricing drives everything</span> <span class="step-rest">— who you attract, your margins, your quality of life</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Hourly, menu, and value-based all have the same flaw</span> <span class="step-rest">— they don't scale</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Hybrid pricing is the move</span> <span class="step-rest">— upfront diagnostic, then flat-rate ongoing services</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">$5K–$20K per client per year</span> <span class="step-rest">— that's your target range to hit $250K</span></div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div><span class="step-bold">To charge more, change who you serve</span> <span class="step-rest">— not just the number on the invoice</span></div>
+      </li>
+    </ul>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Keep watching in sequential order</strong> — each module builds on the last. Next up: Identifying Your Client Avatar — who has a need worth $5K–$20K/yr?
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Downstream' },
+    { id: 'sec-1', label: 'Bad Models' },
+    { id: 'sec-2', label: 'Hybrid Pricing' },
+    { id: 'sec-3', label: 'Examples' },
+    { id: 'sec-4', label: 'Sweet Spot' },
+    { id: 'sec-5', label: 'Bifurcation' },
+    { id: 'sec-6', label: 'Takeaways' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

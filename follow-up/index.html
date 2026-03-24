@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Follow Up Without Sounding Needy — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Math breakdown ── */
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .math-headline {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+  }
+  .math-headline-sub { font-size: 13px; color: #999; margin-bottom: 20px; }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  .body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 13 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">How to Follow Up Without Sounding Needy</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: The Follow-Up Problem ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">The Pipeline Leak</div>
+      <h1 class="slide-title">The Stat That Changes Everything</h1>
+      <p class="slide-sub">Most accountants leave money on the table not because their service is bad, but because they give up after one conversation.</p>
+    </div>
+
+    <div class="math-box">
+      <div class="math-headline">48%</div>
+      <div class="math-headline-sub">of salespeople never follow up. Not even once.</div>
+    </div>
+
+    <div class="callout">
+      <strong>80% of sales close after the 5th follow-up.</strong> Think about that gap. Half the people quit after one try, but the deals are closing after five or more touches.
+    </div>
+
+    <p class="body-text" style="font-weight:600; text-align:center; font-size:16px;">
+      Your competition isn't following up. If you do, you win by default.
+    </p>
+
+    <div class="callout green">
+      That "no" you got? That wasn't a no &mdash; that was <strong>"not yet."</strong>
+    </div>
+  </div>
+
+  <!-- ── Section 2: The Three Types of Follow-Up ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">The Framework</div>
+      <h1 class="slide-title">The Three Types of Follow-Up That Work</h1>
+      <p class="slide-sub">Every follow-up must do one of three things: educate, validate, or add value. If it doesn't, don't send it.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card green-accent">
+        <div class="card-label green">Type 1 &mdash; Educate</div>
+        <div class="card-desc" style="margin-bottom:12px;">Teach them something they didn't know. Position yourself as the expert, not the salesperson.</div>
+        <ul class="step-list" style="margin:0;">
+          <li style="padding:8px 0;"><div><span class="step-bold">A short video</span> <span class="step-rest">on S-corp structure for their specific situation</span></div></li>
+          <li style="padding:8px 0;"><div><span class="step-bold">A tax deadline reminder</span> <span class="step-rest">with implications they hadn't considered</span></div></li>
+          <li style="padding:8px 0; border-bottom:none;"><div><span class="step-bold">A surprising stat</span> <span class="step-rest">&mdash; "Did you know 62% of contractors overpay their taxes?"</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card green-accent">
+        <div class="card-label green">Type 2 &mdash; Validate</div>
+        <div class="card-desc" style="margin-bottom:12px;">Show proof that your approach works. Let results speak for you.</div>
+        <ul class="step-list" style="margin:0;">
+          <li style="padding:8px 0;"><div><span class="step-bold">A testimonial</span> <span class="step-rest">from a client in a similar industry or situation</span></div></li>
+          <li style="padding:8px 0;"><div><span class="step-bold">A case study</span> <span class="step-rest">with specific numbers and outcomes</span></div></li>
+          <li style="padding:8px 0; border-bottom:none;"><div><span class="step-bold">A screenshot</span> <span class="step-rest">of a real result &mdash; tax savings, revenue growth, etc.</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card green-accent">
+        <div class="card-label green">Type 3 &mdash; Add Value</div>
+        <div class="card-desc" style="margin-bottom:12px;">Give something with no strings attached. Generosity creates obligation.</div>
+        <ul class="step-list" style="margin:0;">
+          <li style="padding:8px 0;"><div><span class="step-bold">A $5 Starbucks gift card</span> <span class="step-rest">with a thoughtful note</span></div></li>
+          <li style="padding:8px 0;"><div><span class="step-bold">A relevant article</span> <span class="step-rest">or industry report</span></div></li>
+          <li style="padding:8px 0; border-bottom:none;"><div><span class="step-bold">A quick insight</span> <span class="step-rest">specific to their business &mdash; something only you'd notice</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The litmus test:</strong> before you send any follow-up, ask yourself &mdash; does this educate, validate, or add value? If the answer is no, delete it and start over.
+    </div>
+  </div>
+
+  <!-- ── Section 3: What Never to Say ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Kill These Phrases</div>
+      <h1 class="slide-title">What Follow-Up Should NEVER Be</h1>
+      <p class="slide-sub">These messages say: "I have nothing of value to add, but please give me your money."</p>
+    </div>
+
+    <div class="callout red" style="margin-bottom:12px;">
+      <strong>"Just checking in..."</strong>
+    </div>
+    <div class="callout red" style="margin-bottom:12px;">
+      <strong>"Quick question..."</strong>
+    </div>
+    <div class="callout red" style="margin-bottom:12px;">
+      <strong>"Following up on my last email..."</strong>
+    </div>
+    <div class="callout red" style="margin-bottom:24px;">
+      <strong>"Wanted to circle back..."</strong>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Your Competitor</h3>
+        <ul>
+          <li>"Hey, just checking in to see if you had any questions about our proposal..."</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>You</h3>
+        <ul>
+          <li>A 60-second Loom video explaining a tax strategy specific to their situation</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-weight:600; text-align:center; font-size:18px; color:#6800FC; margin-top:24px;">
+      Who do they call back?
+    </p>
+
+    <div class="callout">
+      <strong>The law of reciprocity:</strong> every interaction should leave them feeling like they owe you because of the value you gave. That's how you follow up without sounding needy &mdash; you make them grateful you reached out.
+    </div>
+  </div>
+
+  <!-- ── Section 4: The Post-Call Double-Tap ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">After the Call</div>
+      <h1 class="slide-title">The Post-Call Double-Tap</h1>
+      <p class="slide-sub">Text + Email. Every time. Immediately after every call &mdash; whether they said yes, no, or maybe.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Step 1: Text</div>
+        <div class="card-desc"><em>"Great speaking with you! I just sent a recap to your inbox with next steps and some resources I mentioned."</em></div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Step 2: Email</div>
+        <div class="card-desc">Full recap of what you discussed, clear next steps, relevant resources, and your availability.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Do this whether they said yes, no, or maybe.</strong> You're demonstrating the communication standard they'll get as a client. This is the reason they're leaving their current CPA &mdash; because their CPA doesn't communicate like this.
+    </div>
+
+    <div class="slide-header" style="margin-top:40px;">
+      <div class="slide-kicker">Speed Wins</div>
+      <h1 class="slide-title" style="font-size:26px;">Compress the Timeline</h1>
+      <p class="slide-sub">The longer the gap, the colder they get.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Monday</span> <span class="step-rest">&mdash; Discovery Call</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Wednesday</span> <span class="step-rest">&mdash; Proposal Call</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Next Monday</span> <span class="step-rest">&mdash; Onboarding</span></div>
+      </li>
+    </ul>
+
+    <div class="callout green">
+      <strong>4 days. Start to finish.</strong> Most accountants let this drag out over weeks. The prospect goes cold, talks to competitors, or does nothing. Compress the timeline and hesitation dies.
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Before &mdash; $10K/month</h3>
+        <ul>
+          <li>Extended timelines, cold leads</li>
+          <li>Proposals sent by email</li>
+          <li>Waiting weeks for decisions</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>After &mdash; $30K/month</h3>
+        <ul>
+          <li>Proposal calls + 4-day close</li>
+          <li>Momentum replaced hesitation</li>
+          <li>Same leads, same offer, same market</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="body-text" style="text-align:center;font-style:italic;">
+      Alexis tripled her revenue by making one change: compressing the timeline from weeks to days.
+    </p>
+  </div>
+
+  <!-- ── Section 5: Route the "Not Now" People ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Long-Term Nurture</div>
+      <h1 class="slide-title">Route the "Not Now" People</h1>
+      <p class="slide-sub">Not every "no" is forever. Some people genuinely aren't ready yet. Never let a lead disappear.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Nurture Sequence</span> <span class="step-rest">&mdash; Route them into your email nurture so they stay warm and keep seeing your expertise</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Value-Add Check-ins</span> <span class="step-rest">&mdash; Touch base at 30, 60, and 90 days with something useful &mdash; not a pitch</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Play the Long Game</span> <span class="step-rest">&mdash; The lead you nurture today might be a $15K client in 6 months</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>No lead should ever fall through the cracks.</strong> When someone says "not now," have a clear process for where they go and how you stay in touch.
+    </div>
+  </div>
+
+  <!-- ── Section 6: Key Takeaway ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">The Big Idea</div>
+      <h1 class="slide-title">Follow-Up Is Generosity, Not Persistence</h1>
+      <p class="slide-sub">Every touchpoint should educate, validate, or add value. Do that consistently, and you'll never sound needy again.</p>
+    </div>
+
+    <div class="quote">
+      <p>Follow-up is not about persistence. It's about generosity.</p>
+    </div>
+
+    <p class="body-text" style="text-align:center;font-size:15px;">
+      When they see your name, it should mean something positive. You'll sound like the expert they've been looking for &mdash; not someone who's chasing them.
+    </p>
+
+    <div class="callout" style="margin-top:24px;">
+      <strong>When you approach every follow-up as an opportunity to give</strong> &mdash; to teach, to prove, to help &mdash; you will never sound needy. And when they're ready, you'll be the only person they want to work with.
+    </div>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Your Action Items</h1>
+      <p class="slide-sub">Four exercises to complete before moving on.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Build Your Follow-Up Sequence</div>
+        <div class="action-desc">Write a 5-touch sequence with one educate, one validate, and one value-add piece. Map out the timing between each touch.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Create Your Double-Tap Templates</div>
+        <div class="action-desc">Write your post-call text message and recap email templates. Make them easy to personalize quickly.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Write Your "Never Say" List</div>
+        <div class="action-desc">List the 5 phrases you'll eliminate from every follow-up. Write what you'll say instead.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Define Your Nurture Handoff</div>
+        <div class="action-desc">Set up your process for routing "not now" leads to long-term nurture. Define the 30/60/90-day check-in cadence.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>These aren't optional &mdash; they're the systems that will keep your pipeline from leaking.</strong> Complete all four exercises before moving on. Go follow up like a professional.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'The Problem' },
+    { id: 'sec-1', label: 'Three Types' },
+    { id: 'sec-2', label: 'Never Say This' },
+    { id: 'sec-3', label: 'Double-Tap' },
+    { id: 'sec-4', label: 'Not Now Leads' },
+    { id: 'sec-5', label: 'Key Takeaway' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = `${current + 1} / ${sections.length}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = `1 / ${sections.length}`;
+</script>
+</body>
+</html>

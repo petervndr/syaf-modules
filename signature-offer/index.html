@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creating Your Signature Offer — $0–$250K Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 36px;
+  }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '\2014 '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* ── Table ── */
+  .pain-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+  .pain-table th {
+    background: #6800FC;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pain-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E8E8E8;
+    vertical-align: top;
+  }
+  .pain-table tr:last-child td { border-bottom: none; }
+  .pain-table .pain { color: #8F281C; font-weight: 600; }
+  .pain-table .arrow { color: #6800FC; font-size: 16px; font-weight: 700; text-align: center; }
+  .pain-table .benefit { color: #57A04D; font-weight: 600; }
+
+  /* ── Bullet list ── */
+  .bullet-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .bullet-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before { content: '\2014 '; color: #BBB; }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 1.3 &nbsp;&middot;&nbsp; $0–$250K Toolkit</span>
+  <span class="topbar-title">Creating Your Signature Offer</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: 80% of the Sale ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Your Offer Is 80% of the Sale</h1>
+      <p class="slide-sub">Build one clear, compelling offer that does the heavy lifting for you — before you ever open your mouth on a call.</p>
+    </div>
+
+    <div style="text-align:center;margin:32px 0;">
+      <span style="font-family:'Merriweather',Georgia,serif;font-size:72px;font-weight:700;color:#6800FC;">80%</span>
+      <p style="font-size:16px;color:#555;margin-top:8px;">of the sale is won or lost by the offer itself</p>
+    </div>
+
+    <p style="font-size:17px;color:#555;line-height:1.7;margin:20px 0;">
+      Brian's sales team has closed $16M+ for accounting firms — without a single accountant on staff. The offer structure does the heavy lifting, not sales tricks. If the offer is clear and speaks to their pain, the sales call is just confirming fit.
+    </p>
+
+    <div class="callout">
+      <strong>Most accountants describe what they DO — not what the client GETS.</strong> That's why they struggle to sell. We're going to fix that today.
+    </div>
+  </div>
+
+  <!-- ── Section 2: Clarity & Outcomes ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Core Principles</div>
+      <h1 class="slide-title">Clarity Sells</h1>
+      <p class="slide-sub">A confused mind always says no.</p>
+    </div>
+
+    <div class="quote">
+      <p>A confused mind always says no. If your prospect is trying to figure out what they'd be buying, you've already lost.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Explainable in 30 seconds</span> <span class="step-rest">— if it takes longer, simplify it</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">The spouse test</span> <span class="step-rest">— could your spouse explain it to a stranger? If not, it's too complicated.</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Outcomes, not services</span> <span class="step-rest">— prospects don't buy what they don't understand</span></div>
+      </li>
+    </ul>
+
+    <div class="callout red" style="margin-top:24px;">
+      <strong>Wrong:</strong> "We'll do entity restructuring and implement a quarterly tax projection model..."
+    </div>
+
+    <div class="callout green">
+      <strong>Right:</strong> "You're probably overpaying by $25,000 — we'll fix that."
+    </div>
+
+    <p style="font-size:17px;color:#555;line-height:1.7;margin-top:20px;">
+      Never explain HOW you deliver on the sales call — that's what they're paying for. Use THEIR words from the conversation, not accounting jargon. If you explain the "how" for free, you've given away the value.
+    </p>
+  </div>
+
+  <!-- ── Section 3: Features vs Benefits ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Framework</div>
+      <h1 class="slide-title">Features vs. Benefits</h1>
+      <p class="slide-sub">Every line item in your offer needs to pass the "so what?" test.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Feature (What You Say)</h3>
+        <ul>
+          <li>Three advisory calls per year</li>
+          <li>Monthly financial statements</li>
+          <li>Year-end tax planning session</li>
+          <li>Quarterly estimated tax calculations</li>
+          <li>Bookkeeping reconciliation</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Benefit (What They Hear)</h3>
+        <ul>
+          <li>You'll never get blindsided at year-end</li>
+          <li>You'll always know your real numbers</li>
+          <li>Tax surprises become a thing of the past</li>
+          <li>You keep more of what you make every quarter</li>
+          <li>Your books are done without you touching them</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Benefits = The Opposite of the Pain.</strong> Take each pain point your avatar described and flip it into the outcome you deliver.
+    </div>
+
+    <table class="pain-table">
+      <tr><th>Pain Point</th><th></th><th>Benefit Statement</th></tr>
+      <tr><td class="pain">Surprise tax bill</td><td class="arrow">&rarr;</td><td class="benefit">Know your exact tax liability before year-end</td></tr>
+      <tr><td class="pain">No idea how much to pay myself</td><td class="arrow">&rarr;</td><td class="benefit">A systemized plan for owner compensation</td></tr>
+      <tr><td class="pain">Hours wasted on bookkeeping</td><td class="arrow">&rarr;</td><td class="benefit">Your books are done without you touching them</td></tr>
+      <tr><td class="pain">Overpaying on taxes</td><td class="arrow">&rarr;</td><td class="benefit">Keep more of what you make, every quarter</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Section 4: Offer Structure ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Structure</div>
+      <h1 class="slide-title">One Standardized Upfront Offer</h1>
+      <p class="slide-sub">Same price. Same scope. Same deliverable — for every qualified prospect.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Not a menu, not "let me look at your situation first."</strong> Customize the ongoing package AFTER they've paid and you've seen their books.
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Easier to sell</span> <span class="step-rest">— you don't have to think about what to charge</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Easier to train</span> <span class="step-rest">— someone else can sell it because it's the same every time</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Faster close</span> <span class="step-rest">— the prospect gets clarity and says yes faster</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Price in the sweet spot</span> <span class="step-rest">— $5K–$20K/yr for your avatar</span></div>
+      </li>
+    </ul>
+
+    <div class="callout red" style="margin-top:24px;">
+      <strong>No free reviews.</strong> Charge before you diagnose. Call the engagement letter an "activation link" — language matters. A prognosis without diagnosis is malpractice.
+    </div>
+  </div>
+
+  <!-- ── Section 5: The Fast Action Bonus ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Closing Technique</div>
+      <h1 class="slide-title">The Fast Action Bonus (FAB)</h1>
+      <p class="slide-sub">Pull the most uniquely valuable piece OUT of the main offer — include it only if they commit today.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Identify the single most valuable component</span> <span class="step-rest">— in your offer</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Describe it by VALUE</span> <span class="step-rest">— "a complete 3-year tax liability forecast" — not "Bonus Item #1"</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Anchor a dollar value</span> <span class="step-rest">— "normally a separate $2,500 engagement"</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Add value for speed</span> <span class="step-rest">— you're not adding pressure, you're rewarding urgency</span></div>
+      </li>
+    </ul>
+
+    <div class="callout green" style="margin-top:24px;">
+      <strong>This single technique tripled close rates</strong> for one of Brian's clients. The specificity is what makes it feel real.
+    </div>
+
+    <div class="card" style="margin-top:24px;border-top:3px solid #6800FC;">
+      <div class="card-label purple">FAB IN ACTION: TS 365</div>
+      <p style="font-size:17px;color:#555;line-height:1.7;margin-top:8px;">
+        <strong>Main Offer:</strong> "We handle your bookkeeping, tax strategy, and year-end planning — you'll never get a surprise tax bill again. Flat rate, no surprises."
+      </p>
+      <p style="font-size:14px;color:#6800FC;line-height:1.7;margin-top:12px;font-weight:600;">
+        FAB: "If you activate today, I'll include a full 3-year tax liability projection — normally a separate $2,500 engagement."
+      </p>
+      <p style="font-size:13px;color:#888;line-height:1.6;margin-top:12px;">
+        Outcome language only. The FAB is pulled from inside the main offer, not invented separately. Naming a dollar value anchors perceived value. Result: higher urgency, faster closes, same client quality.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Section 6: Key Takeaways ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Takeaways</div>
+      <h1 class="slide-title">Key Takeaways</h1>
+      <p class="slide-sub">Six principles that separate firms that grow from the ones that stay stuck.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Your offer is 80% of the sale</span> <span class="step-rest">— get it right before you step on any call</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Clarity sells</span> <span class="step-rest">— if they can't understand it in 30 seconds, they won't buy</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Sell outcomes, not process</span> <span class="step-rest">— the "how" is what they're paying for</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">One standardized offer</span> <span class="step-rest">— same price, same scope, customize after they've paid</span></div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div><span class="step-bold">Benefits = opposite of pain</span> <span class="step-rest">— flip every problem into an outcome statement</span></div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div><span class="step-bold">Use the Fast Action Bonus</span> <span class="step-rest">— pull out the most valuable piece for urgency</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Build Your Offer Now</h1>
+      <p class="slide-sub">Don't just watch — you have everything you need.</p>
+    </div>
+
+    <div class="callout">
+      <strong>Complete the Offer Creation Worksheet</strong> linked in this module. It takes about 30 minutes. When you're done, you'll have a signature offer you can sell on your next call.
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">List your avatar's 3-5 biggest problems</div>
+        <div class="action-desc">Pull this from the avatar module work you already did.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Map each problem to the outcome you deliver</div>
+        <div class="action-desc">Flip the pain. Every problem has an opposite — that's your benefit statement.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Bundle outcomes into one flat-rate package</div>
+        <div class="action-desc">Price it in the $5K-$20K sweet spot for your avatar.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Pull the single most valuable piece as your FAB</div>
+        <div class="action-desc">Describe it by value, anchor a dollar amount, make it conditional on committing today.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">5</div>
+      <div>
+        <div class="action-title">Write your 30-second pitch</div>
+        <div class="action-desc">Outcome language only. Test it with your spouse — if they can't repeat it back, simplify.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Next up: Module 1.4 — Problem-Solution Mapping.</strong> Brian will show you how to connect everything you've built here to the actual sales conversation.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: '80% of the Sale' },
+    { id: 'sec-1', label: 'Clarity' },
+    { id: 'sec-2', label: 'Features vs Benefits' },
+    { id: 'sec-3', label: 'Offer Structure' },
+    { id: 'sec-4', label: 'Fast Action Bonus' },
+    { id: 'sec-5', label: 'Takeaways' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach to Affiliate Partners — $0–$250K Toolkit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* -- Top bar -- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* -- Section nav -- */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* -- Main content -- */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* -- Slide-style heading -- */
+  .slide-header { margin-bottom: 36px; }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* -- Cards -- */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Callout box -- */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* -- Step list -- */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* -- Two-col comparison -- */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* -- Quote -- */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* -- Action items -- */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Funnel visual -- */
+  .funnel { margin: 32px 0; text-align: center; }
+  .funnel-tier {
+    display: inline-block;
+    padding: 16px 24px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .funnel-tier .big {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #6800FC;
+  }
+  .funnel-tier .label {
+    font-size: 14px;
+    color: #121212;
+  }
+
+  /* -- Math breakdown -- */
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .math-headline {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  .math-headline-sub { font-size: 13px; color: #999; margin-bottom: 20px; text-align: center; }
+
+  /* -- Nav buttons -- */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 08 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">Outreach to Affiliate Partners</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- Section 1: The Problem with Direct Outreach -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Why Direct Outreach Fails</h1>
+      <p class="slide-sub">Cold-messaging prospects is playing the game on hard mode. There's a better way.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>The trust gap is massive.</strong> When you cold-message a potential client on LinkedIn or email, you are a complete stranger asking for their money. You have zero credibility, zero social proof, and zero relationship. You're competing with every other DM in their inbox.
+    </div>
+
+    <p class="body-text">Direct outreach to prospects can work &mdash; but it's the hardest possible way to get clients at this stage.</p>
+
+    <div class="quote">
+      <p>I would much rather you reach out to people who are already in front of the people you want to get in front of.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Direct to Prospect</h3>
+        <ul>
+          <li>You &rarr; Stranger</li>
+          <li>No trust, no context</li>
+          <li>High rejection rate</li>
+          <li>Competing with every other DM</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Through an Affiliate Partner</h3>
+        <ul>
+          <li>You &rarr; Partner &rarr; Their clients</li>
+          <li>Trust transfers instantly</li>
+          <li>You arrive pre-endorsed</li>
+          <li>Conversation is completely different</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: What Is an Affiliate Partner -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Core Concept</div>
+      <h1 class="slide-title">What Is an Affiliate Partner?</h1>
+      <p class="slide-sub">Same clients, different service, zero competition.</p>
+    </div>
+
+    <div class="callout">
+      <strong>An affiliate partner</strong> is someone who serves the same clients you want to serve, but in a non-competing capacity. They have <em>audiences</em> of your ideal clients &mdash; and a built-in reason to introduce you.
+    </div>
+
+    <p class="body-text">They're not another accountant. They're the financial advisor, the attorney, the business coach, the marketing agency &mdash; people who are already working with your ideal clients every single day.</p>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Tax Planners</div>
+        <div class="card-desc">Financial advisors, estate attorneys, business coaches, insurance agents</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Bookkeepers</div>
+        <div class="card-desc">Marketing agencies, legal tech consultants, bar association contacts</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">General Firms</div>
+        <div class="card-desc">Business attorneys, insurance brokers, HR consultants, industry coaches</div>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-style:italic; color:#888;">Think about who else touches your ideal client's business. That person is a potential affiliate partner.</p>
+  </div>
+
+  <!-- Section 3: The Two-Sided Offer -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">Strategy</div>
+      <h1 class="slide-title">The Two-Sided Offer</h1>
+      <p class="slide-sub">Why the partner says yes &mdash; and why their clients say yes.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>The partner's fear:</strong> "What if I introduce you and you suck? That reflects on me." You need to make it a no-brainer for them too.
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Offer to the Partner</div>
+        <div class="card-desc">Why <em>they</em> benefit from making the introduction. Solves a problem they already have. If you only have the client offer, the partner has no reason to stick their neck out.</div>
+      </div>
+      <div class="card green-accent">
+        <div class="card-label green">Offer to Their Client</div>
+        <div class="card-desc">The value you deliver to the end client &mdash; a tax plan, financial analysis, strategy session. This is the deliverable that builds trust.</div>
+      </div>
+    </div>
+
+    <p class="body-text" style="font-style:italic; color:#888;">Both offers must be compelling. The partner won't introduce you unless there's something in it for them.</p>
+  </div>
+
+  <!-- Section 4: Real-World Examples -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Examples</div>
+      <h1 class="slide-title">Two-Sided Offers in Action</h1>
+      <p class="slide-sub">Concrete examples showing how the three-way win works.</p>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:16px;">Example 1: Marketing Agency &rarr; Attorney</h3>
+    <p class="body-text">Marketing agencies that serve law firms struggle to prove ROI to their attorney clients.</p>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Your Offer to the Agency</div>
+        <div class="card-desc">"I'll run a financial analysis showing exactly how much revenue your marketing generated. If the numbers look good, your clients will never leave."</div>
+      </div>
+      <div class="card green-accent">
+        <div class="card-label green">Your Offer to the Attorney</div>
+        <div class="card-desc">A comprehensive financial &amp; marketing ROI analysis that quantifies what their marketing is actually doing for their firm.</div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      The agency gets a retention tool. You get in front of the attorney. The attorney gets valuable data. <strong>Everyone wins.</strong>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 16px;">Example 2: Financial Advisor &rarr; Tax Client</h3>
+    <p class="body-text">Financial advisors make money based on assets under management. Tax savings create investable money.</p>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Your Offer to the Advisor</div>
+        <div class="card-desc">"I'll do tax strategy sessions for your clients. When they save on taxes, they have more money to invest with you. Your AUM goes up."</div>
+      </div>
+      <div class="card green-accent">
+        <div class="card-label green">Your Offer to Their Client</div>
+        <div class="card-desc">A comprehensive tax strategy session that identifies savings opportunities they're currently missing.</div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      The advisor's AUM grows. You get a new tax client. The client saves money on taxes. <strong>Three-way win.</strong>
+    </div>
+  </div>
+
+  <!-- Section 5: The Nuclear Option -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Advanced Play</div>
+      <h1 class="slide-title">The Nuclear Option &mdash; Do 5 for Free</h1>
+      <p class="slide-sub">Make it impossible to say no. Trade short-term revenue for long-term relationships.</p>
+    </div>
+
+    <div class="callout">
+      <strong>"Normally I charge $5,000 for a tax plan. I'm not going to charge you anything. I want you to offer this to your clients and charge whatever you like."</strong>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">The partner can charge $5k, $10k, even $20k</span> <span class="step-rest">&mdash; and keep all of it</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Put a limit on it: "I'll do 5 of these for free"</span> <span class="step-rest">&mdash; creates urgency and scarcity</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Over-deliver and prove your value</span> <span class="step-rest">&mdash; the partner looks like a genius for connecting you</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Upsell to ongoing services</span> <span class="step-rest">&mdash; "$500+/mo retainer from zero acquisition cost"</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>The upsell path:</strong> Free engagement &rarr; Over-deliver &rarr; "I'd love to help implement this. Here's what ongoing work looks like." &rarr; Retainer client. The free engagement wasn't free &mdash; it was the world's best sales pitch.
+    </div>
+  </div>
+
+  <!-- Section 6: Finding Partners & Outreach -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Execution</div>
+      <h1 class="slide-title">Finding Partners &amp; Writing the Message</h1>
+      <p class="slide-sub">Where to find affiliate partners and the exact framework for reaching out.</p>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:16px;">Where to Find Them</h3>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">LinkedIn search</span> <span class="step-rest">&mdash; profession + your city/region</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Google search</span> <span class="step-rest">&mdash; "[profession] [your city]"</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Ask existing clients</span> <span class="step-rest">&mdash; "Who's your financial advisor? Your attorney? Your insurance person?" Those are warm leads.</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Industry events</span> <span class="step-rest">&mdash; local business groups, professional associations, online communities</span></div>
+      </li>
+    </ul>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 16px;">The Outreach Message Framework</h3>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Lead with value, not an ask</span> <span class="step-rest">&mdash; "I've been working with [client type] and noticed something interesting..."</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Show you understand THEIR challenge</span> <span class="step-rest">&mdash; demonstrate you know their business pain, not just yours</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Propose the two-sided offer</span> <span class="step-rest">&mdash; explain what's in it for them AND their clients</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Make it low-risk</span> <span class="step-rest">&mdash; "I'd love to do a few of these for free to prove it works"</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section 7: The Numbers & Proof -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Expectations</div>
+      <h1 class="slide-title">Expect a Funnel &mdash; Not a Flood</h1>
+      <p class="slide-sub">Set realistic expectations. One good partner changes everything.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">Outreach</div>
+        <div class="card-value">20&ndash;30</div>
+        <div class="card-desc">messages sent</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Conversations</div>
+        <div class="card-value">5&ndash;10</div>
+        <div class="card-desc">real conversations</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">Partnerships</div>
+        <div class="card-value">2&ndash;3</div>
+        <div class="card-desc">real, ongoing partnerships</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>One good affiliate partner can send you multiple clients over months and years.</strong> This is a relationship, not a transaction. Two or three strong partnerships can completely transform your pipeline and get you to $250k.
+    </div>
+
+    <div class="math-box">
+      <div class="math-headline">$500k+</div>
+      <div class="math-headline-sub">in revenue from affiliate partnerships alone</div>
+    </div>
+
+    <p class="body-text">Ryan Bakke built his first $500k to $1M in revenue through JV workshops and affiliate partnerships with real estate coaches and influencers. He found people with his audience, crafted two-sided offers, and the referrals kept compounding.</p>
+  </div>
+
+  <!-- Section 8: Action Items -->
+  <div class="section" id="sec-7">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Steps</div>
+      <h1 class="slide-title">Action Items</h1>
+      <p class="slide-sub">Four things to complete before moving on.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">List 10 potential affiliate partners</div>
+        <div class="action-desc">Name, profession, and a clear reason why they'd benefit from introducing you to their clients.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Draft your two-sided offer</div>
+        <div class="action-desc">Write out what's in it for the partner AND what's in it for their client. Both sides need to be compelling.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Write your outreach message</div>
+        <div class="action-desc">The actual LinkedIn or email message you'll send to your first 5 partners. Use the framework: lead with value, show understanding, propose the offer, make it low-risk.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Decide your free offer commitment</div>
+        <div class="action-desc">How many free engagements will you do? We suggest 3-5. This is the nuclear option that makes it impossible to say no.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Stop chasing strangers. Start partnering with allies.</strong> The people who already have your ideal clients' trust are the fastest path to $250k.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Why Not Direct' },
+    { id: 'sec-1', label: 'Affiliate Partners' },
+    { id: 'sec-2', label: 'Two-Sided Offer' },
+    { id: 'sec-3', label: 'Examples' },
+    { id: 'sec-4', label: 'Nuclear Option' },
+    { id: 'sec-5', label: 'Finding & Outreach' },
+    { id: 'sec-6', label: 'The Numbers' },
+    { id: 'sec-7', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>

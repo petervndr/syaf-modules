@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Process Overview — $0–$250K Toolkit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* -- Top bar -- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 15px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* -- Section nav -- */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 56px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* -- Main content -- */
+  .main {
+    padding: 56px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* -- Slide-style heading -- */
+  .slide-header { margin-bottom: 36px; }
+  .slide-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* -- Cards -- */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Callout box -- */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 22px 28px;
+    margin: 28px 0;
+    font-size: 17px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* -- Step list -- */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 17px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* -- Two-col comparison -- */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col h3.green { color: #57A04D; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* -- Quote -- */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: 'Merriweather', Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* -- Action items -- */
+  .action-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 44px; height: 44px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* -- Script box -- */
+  .script-box {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .script-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .script-text {
+    font-size: 15px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* -- Table -- */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .data-table th {
+    background: #6800FC;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 20px;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #121212;
+    border-bottom: 1px solid #E8E8E8;
+    background: #fff;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* -- Nav buttons -- */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  p.body-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 09 &nbsp;&middot;&nbsp; $0&ndash;$250K Toolkit</span>
+  <span class="topbar-title">Sales Process Overview</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- Section 1: Reframing Sales -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Mindset Shift</div>
+      <h1 class="slide-title">Reframing Sales</h1>
+      <p class="slide-sub">It's not about you. It's about them.</p>
+    </div>
+
+    <div class="quote">
+      <p>Sales means empowering people to make life-changing decisions.</p>
+      <div class="quote-attr">&mdash; Brian Mayoral</div>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">If you believe your service is worth it</span> <span class="step-rest">&mdash; you have a moral obligation to help them say yes</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">The discomfort you feel selling</span> <span class="step-rest">&mdash; comes from focusing on yourself, not the person in front of you</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Suffering comes from self-obsession</span> <span class="step-rest">&mdash; shift to serving and the discomfort disappears</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">You are the guide, not the hero</span> <span class="step-rest">&mdash; think StoryBrand: the prospect is Simba, you are Rafiki</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>You don't need to be a "natural salesperson."</strong> That's a myth. You need to believe in what you're selling and follow a process.
+    </div>
+  </div>
+
+  <!-- Section 2: The Three Pillars -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Foundation</div>
+      <h1 class="slide-title">The Three Pillars of Sales</h1>
+      <p class="slide-sub">In this order. No shortcuts.</p>
+    </div>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">01 &mdash; Mindset</div>
+        <div class="card-value" style="font-size:22px;">Belief</div>
+        <div class="card-desc">Do you believe your service is worth $5k&ndash;$20k? If not, they'll feel it. They feel your energy on that call.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">02 &mdash; Process</div>
+        <div class="card-value" style="font-size:22px;">Structure</div>
+        <div class="card-desc">A repeatable structure you follow every single time. Not winging it. Not improvising.</div>
+      </div>
+      <div class="card purple-accent">
+        <div class="card-label purple">03 &mdash; Skillset</div>
+        <div class="card-value" style="font-size:22px;">Technique</div>
+        <div class="card-desc">Asking questions, handling objections, closing. These come LAST, not first.</div>
+      </div>
+    </div>
+
+    <div class="callout red">
+      <strong>Most people try to learn sales skills before fixing their mindset</strong> &mdash; they watch YouTube videos on "closing techniques" before they've ever fixed their belief about their own value. That's backwards.
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Before</h3>
+        <ul>
+          <li>PE teacher at $42k/year</li>
+          <li>No sales experience</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>After</h3>
+        <ul>
+          <li>#1 national sales trainer at Tony Robbins</li>
+          <li>The skills came after the mindset shift</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: The 5-Step Call Structure -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">The Framework</div>
+      <h1 class="slide-title">The 5-Step Call Structure</h1>
+      <p class="slide-sub">Simple enough to execute on your first call. 20&ndash;25 minutes total.</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1. Set the Agenda</strong></td><td>~2 min</td></tr>
+        <tr><td><strong>2. Discovery</strong></td><td>10&ndash;15 min</td></tr>
+        <tr><td><strong>3. Confirm the Problems</strong></td><td>~2 min</td></tr>
+        <tr><td><strong>4. Present the Solution</strong></td><td>~5 min</td></tr>
+        <tr><td><strong>5. Ask for the Decision</strong></td><td>~2 min</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Total: 20&ndash;25 minutes.</strong> Simple, repeatable, effective. Print this out. Tape it next to your screen. Follow it on every single call until it becomes second nature.
+    </div>
+  </div>
+
+  <!-- Section 4: Steps 1 & 2 -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Steps 1 &amp; 2</div>
+      <h1 class="slide-title">Set the Agenda &amp; Discovery</h1>
+      <p class="slide-sub">Open strong and let them do the talking.</p>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:12px;">Step 1 &mdash; Set the Agenda (~2 min)</h3>
+    <p class="body-text">Tell them exactly what's going to happen on this call. Remove uncertainty and build trust from the first 30 seconds.</p>
+
+    <div class="script-box">
+      <div class="script-label">Your Script</div>
+      <div class="script-text">"I'm going to ask you some questions, understand your situation, and if I think I can help, I'll share what that looks like. Sound good?"</div>
+    </div>
+
+    <p class="body-text">This sets expectations, positions you as a professional, and gives them permission to relax.</p>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 12px;">Step 2 &mdash; Discovery (10&ndash;15 min)</h3>
+    <p class="body-text">This is the most important part of the call. Your only job is to ask questions and listen.</p>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Use your Problem-Solution Map</span> <span class="step-rest">&mdash; from Module 05 as your cheat sheet</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Listen more than you talk</span> <span class="step-rest">&mdash; aim for a 70/30 ratio (they talk 70%)</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Dig into specifics</span> <span class="step-rest">&mdash; "How long has this been going on?" and "What has that cost you?"</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Look for emotion</span> <span class="step-rest">&mdash; that's where buying decisions happen</span></div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div><span class="step-bold">Document 2&ndash;3 biggest problems</span> <span class="step-rest">&mdash; as they share them</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section 5: Steps 3, 4 & 5 -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Steps 3, 4 &amp; 5</div>
+      <h1 class="slide-title">Confirm, Present &amp; Close</h1>
+      <p class="slide-sub">Repeat back, map to outcomes, and ask.</p>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:12px;">Step 3 &mdash; Confirm the Problems (~2 min)</h3>
+
+    <div class="script-box">
+      <div class="script-label">Your Script</div>
+      <div class="script-text">"So if I'm hearing you right, the biggest issues are X, Y, and Z. Is that accurate?"</div>
+    </div>
+
+    <p class="body-text">When they say "yes," they've verbally agreed they have a problem. That's a micro-commitment that makes the transition to your solution feel natural.</p>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 12px;">Step 4 &mdash; Present the Solution (~5 min)</h3>
+    <p class="body-text"><strong>Sell the WHAT, not the HOW.</strong> Map their problems directly to your offer's outcomes.</p>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Don't Say</h3>
+        <ul>
+          <li>"We do monthly bookkeeping, quarterly reviews, tax prep, and payroll..."</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Do Say</h3>
+        <ul>
+          <li>"You said you're stressed about owing the IRS &mdash; we eliminate that."</li>
+          <li>"You said you don't know your numbers &mdash; we give you a dashboard you check in 2 minutes."</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 12px;">Step 5 &mdash; Ask for the Decision (~2 min)</h3>
+
+    <div class="script-box">
+      <div class="script-label">Your Script</div>
+      <div class="script-text">"Based on what we've discussed, I think this is a great fit. Would you like to move forward?"</div>
+    </div>
+
+    <p class="body-text">Then be quiet. Let them respond. <strong>Silence is your friend.</strong> If you followed Steps 1&ndash;4, this close feels completely natural.</p>
+  </div>
+
+  <!-- Section 6: Why People Buy -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Psychology</div>
+      <h1 class="slide-title">Why People Buy</h1>
+      <p class="slide-sub">There are only two reasons. Ever.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Avoid Pain</h3>
+        <ul>
+          <li>Overpaying on taxes</li>
+          <li>Stressed and overwhelmed</li>
+          <li>Scared of the IRS</li>
+          <li>"What happens if nothing changes?"</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Gain Pleasure</h3>
+        <ul>
+          <li>Financial clarity and control</li>
+          <li>Confidence at tax time</li>
+          <li>Peace of mind year-round</li>
+          <li>"Imagine knowing exactly what you'll owe"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>Pain is a great propellant. It's the reason why people move forward.</p>
+    </div>
+
+    <p class="body-text">Your discovery questions should dig into both sides. Future-pace the pain: "What happens if nothing changes in the next 12 months?" Then flip it: "Now imagine knowing exactly what you'll owe, having total clarity, feeling confident at tax time."</p>
+  </div>
+
+  <!-- Section 7: Close & Collect -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Execution</div>
+      <h1 class="slide-title">Collect Payment on the Call</h1>
+      <p class="slide-sub">Never email a proposal. Close and collect on the same call. Every time.</p>
+    </div>
+
+    <div class="callout red">
+      <strong>The moment you say "I'll send you something to review"</strong> &mdash; you've lost control. They ghost you. They "need to think about it." They show it to their spouse who talks them out of it.
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Send the activation link while on the call</span> <span class="step-rest">&mdash; "I'm sending you an activation link right now"</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">One standardized price</span> <span class="step-rest">&mdash; no negotiation, no custom quotes</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">If they can't afford it</span> <span class="step-rest">&mdash; they're not your avatar, and that's okay</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Apply the upfront fee to month 12</span> <span class="step-rest">&mdash; this plants the retention seed from day one</span></div>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <strong>Pro tip:</strong> Applying the upfront fee to month 12 makes the client think long-term from the start. It's a subtle but powerful retention mechanism.
+    </div>
+  </div>
+
+  <!-- Section 8: Action Items -->
+  <div class="section" id="sec-7">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Steps</div>
+      <h1 class="slide-title">Your First 10 Calls</h1>
+      <p class="slide-sub">Stop theorizing. Execute.</p>
+    </div>
+
+    <div class="callout">
+      <strong>The goal isn't perfection &mdash; it's reps.</strong> Confidence comes from repetition, not from consuming more content. Your first few calls will be rough &mdash; that's expected and that's okay.
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Get on 10 calls</span> <span class="step-rest">&mdash; don't wait until you feel ready</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Follow the 5-step structure every time</span> <span class="step-rest">&mdash; agenda, discovery, confirm, present, decide</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">After 10 calls, identify your weak spots</span> <span class="step-rest">&mdash; then optimize</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Sell 5&ndash;10 at your current pricing</span> <span class="step-rest">&mdash; then improve</span></div>
+      </li>
+    </ul>
+
+    <h3 style="font-size:16px; font-weight:700; margin:28px 0 16px;">Key Takeaways</h3>
+
+    <div class="action-item">
+      <div class="action-icon">1</div>
+      <div>
+        <div class="action-title">Sales = empowering people</div>
+        <div class="action-desc">It's not manipulation. It's helping them make a decision that changes their financial life.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">2</div>
+      <div>
+        <div class="action-title">Mindset > Process > Skillset</div>
+        <div class="action-desc">Fix your belief first. Then follow a structure. Skills come last.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">3</div>
+      <div>
+        <div class="action-title">Never email a proposal</div>
+        <div class="action-desc">Close and collect on the call. Every time. No exceptions.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">4</div>
+      <div>
+        <div class="action-title">Reps before optimization</div>
+        <div class="action-desc">Your first 10 calls are about building confidence. Stop theorizing and start executing.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Now go book your first call.</strong> Don't rewrite your script for the fifth time. Don't consume another course. Get on the phone.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Reframing Sales' },
+    { id: 'sec-1', label: 'Three Pillars' },
+    { id: 'sec-2', label: '5-Step Structure' },
+    { id: 'sec-3', label: 'Agenda & Discovery' },
+    { id: 'sec-4', label: 'Confirm & Close' },
+    { id: 'sec-5', label: 'Why People Buy' },
+    { id: 'sec-6', label: 'Collect Payment' },
+    { id: 'sec-7', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done \u2713' : 'Next \u2192';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = '1 / ' + sections.length;
+</script>
+</body>
+</html>
