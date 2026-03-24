@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindset & Theory of Constraints — $0–$250K Toolkit</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .topbar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #6800FC;
+    text-transform: uppercase;
+  }
+  .topbar-title {
+    font-size: 13px;
+    color: #999;
+  }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #D0D0D0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dot.active { background: #6800FC; }
+  .dot.visited { background: #BBBBBB; }
+
+  /* ── Section nav ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 40px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav-btn:hover { color: #555; }
+  .nav-btn.active {
+    color: #121212;
+    border-bottom-color: #6800FC;
+  }
+
+  /* ── Main content ── */
+  .main {
+    padding: 48px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Slide-style heading ── */
+  .slide-header {
+    margin-bottom: 32px;
+  }
+  .slide-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #6800FC;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .slide-title {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .slide-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .card-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .card {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card.purple-accent { border-top: 3px solid #6800FC; }
+  .card.red-accent    { border-top: 3px solid #8F281C; }
+  .card.green-accent  { border-top: 3px solid #57A04D; }
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-label.purple { color: #6800FC; }
+  .card-label.red    { color: #8F281C; }
+  .card-label.green  { color: #57A04D; }
+  .card-value {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #F3ECFE;
+    border-left: 4px solid #6800FC;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: #121212;
+    line-height: 1.6;
+  }
+  .callout.red {
+    background: #FDF2F1;
+    border-left-color: #8F281C;
+  }
+  .callout.green {
+    background: #F4FEF7;
+    border-left-color: #57A04D;
+  }
+  .callout strong { color: #121212; }
+
+  /* ── Pipeline visual ── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 32px 0;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .pipe-stage {
+    background: #EBEBEB;
+    border-radius: 6px;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 100px;
+  }
+  .pipe-stage:hover { background: #DEDEDE; }
+  .pipe-stage.active-stage { background: #6800FC; color: #fff; }
+  .pipe-stage.bottleneck { background: #FDF2F1; border: 1px solid #8F281C; color: #8F281C; }
+  .pipe-arrow {
+    color: #BBBBBB;
+    font-size: 18px;
+    padding: 0 4px;
+  }
+  .pipe-label {
+    font-size: 11px;
+    color: #999;
+    margin-top: 6px;
+  }
+  .pipe-wrapper { text-align: center; }
+  .pipeline-note {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin-top: 8px;
+  }
+
+  /* ── Step list ── */
+  .step-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .step-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    background: #6800FC;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-bold { color: #121212; font-weight: 600; }
+  .step-rest { color: #888; }
+
+  /* ── Two-col comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-col.highlight {
+    border-color: #6800FC;
+    background: #F3ECFE;
+  }
+  .compare-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .compare-col.highlight h3 { color: #6800FC; }
+  .compare-col h3.red { color: #8F281C; }
+  .compare-col ul {
+    list-style: none;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .compare-col ul li::before { content: '— '; color: #BBB; }
+
+  /* ── Quote ── */
+  .quote {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: '"';
+    position: absolute;
+    top: -16px; left: 20px;
+    font-size: 64px;
+    color: #6800FC;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .quote p {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: #121212;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  /* ── Action items ── */
+  .action-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .action-icon {
+    width: 36px; height: 36px;
+    background: #F3ECFE;
+    border: 1px solid #D4B8FD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .action-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .action-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Nav buttons ── */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0E0E0;
+  }
+  .nav-footer-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #D0D0D0;
+    background: transparent;
+    color: #888;
+  }
+  .nav-footer-btn:hover { border-color: #6800FC; color: #6800FC; }
+  .nav-footer-btn.primary {
+    background: #6800FC;
+    border-color: #6800FC;
+    color: #fff;
+  }
+  .nav-footer-btn.primary:hover { background: #5500cc; }
+  .nav-footer-btn:disabled { opacity: 0.3; cursor: default; }
+
+  /* ── Math breakdown ── */
+  .math-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #EBEBEB;
+    font-size: 14px;
+  }
+  .math-row:last-child { border-bottom: none; }
+  .math-label { color: #888; }
+  .math-value { font-weight: 700; color: #121212; font-size: 16px; }
+  .math-value.purple { color: #6800FC; }
+  .math-value.green { color: #2E7D32; }
+  .math-value.red { color: #8F281C; }
+  .math-box {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .math-headline {
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6800FC;
+    margin-bottom: 4px;
+  }
+  .math-headline-sub { font-size: 13px; color: #999; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span class="topbar-label">Module 1.1 &nbsp;·&nbsp; $0–$250K Toolkit</span>
+  <span class="topbar-title">Mindset &amp; Theory of Constraints</span>
+  <div class="progress-dots" id="progressDots"></div>
+</div>
+
+<!-- Section nav -->
+<div class="nav" id="sectionNav"></div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ── Section 1: Why $250K ── -->
+  <div class="section active" id="sec-0">
+    <div class="slide-header">
+      <div class="slide-kicker">Opening</div>
+      <h1 class="slide-title">Why $250K Is the Target</h1>
+      <p class="slide-sub">If you're taking on the outsized risk of owning a business, you need to be reaping outsized returns.</p>
+    </div>
+
+    <div class="callout red">
+      A business making <strong>$100K/yr is a terrible business.</strong> You're making less than a good W-2 job with 10× the stress and risk. A good accountant has no reason not to be making $150K–$250K/yr.
+    </div>
+
+    <div class="math-box">
+      <div class="math-headline">$250,000</div>
+      <div class="math-headline-sub">Revenue target</div>
+      <div class="math-row">
+        <span class="math-label">Federal + state taxes</span>
+        <span class="math-value red">− $40K to $50K</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Business expenses</span>
+        <span class="math-value red">− varies</span>
+      </div>
+      <div class="math-row">
+        <span class="math-label">Take-home</span>
+        <span class="math-value green">$150K – $200K</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>This is the minimum threshold</strong> where the risk-reward of entrepreneurship actually makes sense. The entire toolkit is designed to speed-run you here.
+    </div>
+  </div>
+
+  <!-- ── Section 2: Core Concept ── -->
+  <div class="section" id="sec-1">
+    <div class="slide-header">
+      <div class="slide-kicker">Theory of Constraints</div>
+      <h1 class="slide-title">The Core Principle</h1>
+      <p class="slide-sub">The concept that tripled Peter's business in 2025.</p>
+    </div>
+
+    <div class="quote">
+      <p>Every system has one critical bottleneck. Improving anything other than that bottleneck is an illusion of progress.</p>
+      <div class="quote-attr">— Theory of Constraints (Goldratt)</div>
+    </div>
+
+    <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:16px;">
+      Fix the bottleneck, then a new one emerges. Repeat forever. The firms that scale fastest are the ones who can clearly identify their actual bottleneck at any given moment — and focus on that one thing ruthlessly.
+    </p>
+
+    <div class="callout">
+      <strong>The fun thing:</strong> once you break through one constraint, a new one just emerges. So you always just have the <em>next</em> problem to solve.
+    </div>
+  </div>
+
+  <!-- ── Section 3: The Pipeline ── -->
+  <div class="section" id="sec-2">
+    <div class="slide-header">
+      <div class="slide-kicker">The Pipeline Analogy</div>
+      <h1 class="slide-title">Your Business Is a Pipe</h1>
+      <p class="slide-sub">Money goes in at the front. Profit comes out the end. Each stage is a valve.</p>
+    </div>
+
+    <div class="pipeline" id="pipeline">
+      <div class="pipe-wrapper">
+        <div class="pipe-stage active-stage" onclick="setBottleneck(0)">Marketing</div>
+        <div class="pipe-label">Money in</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-wrapper">
+        <div class="pipe-stage" onclick="setBottleneck(1)">Sales</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-wrapper">
+        <div class="pipe-stage" onclick="setBottleneck(2)">Onboarding</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-wrapper">
+        <div class="pipe-stage" onclick="setBottleneck(3)">Delivery</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-wrapper">
+        <div class="pipe-stage" onclick="setBottleneck(4)">Reviews</div>
+        <div class="pipe-label">Profit out</div>
+      </div>
+    </div>
+    <p class="pipeline-note">Click any stage to mark it as the bottleneck</p>
+
+    <div id="bottleneckMsg" class="callout" style="margin-top:24px;">
+      <strong>Marketing is highlighted</strong> — If leads aren't coming in, none of the other stages matter. Fix this first.
+    </div>
+
+    <p style="font-size:14px;color:#555;line-height:1.7;margin-top:20px;">
+      If one valve is nearly closed, it doesn't matter how open all the others are. The water — your revenue — can only flow as fast as the narrowest point.
+    </p>
+  </div>
+
+  <!-- ── Section 4: Order of Operations ── -->
+  <div class="section" id="sec-3">
+    <div class="slide-header">
+      <div class="slide-kicker">Correct Sequence</div>
+      <h1 class="slide-title">Order of Operations</h1>
+      <p class="slide-sub">Work on things in this order. Skipping ahead is the most common mistake.</p>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div><span class="step-bold">Solve marketing</span> <span class="step-rest">— get leads coming in</span></div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div><span class="step-bold">Solve sales</span> <span class="step-rest">— convert more of them</span></div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div><span class="step-bold">Solve onboarding</span> <span class="step-rest">— handle the volume</span></div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div><span class="step-bold">Solve delivery</span> <span class="step-rest">— deliver consistently at scale</span></div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div><span class="step-bold">Solve reviews/referrals</span> <span class="step-rest">— loop back into marketing</span></div>
+      </li>
+      <li>
+        <div class="step-num">6</div>
+        <div><span class="step-bold">Scale marketing again.</span> <span class="step-rest">Repeat.</span></div>
+      </li>
+    </ul>
+
+    <div class="callout red" style="margin-top:24px;">
+      <strong>Most common mistake:</strong> Optimizing your onboarding process when you don't have enough leads to fill it. Improving delivery when sales is the bottleneck. You're busy but not moving the needle.
+    </div>
+  </div>
+
+  <!-- ── Section 5: Supply vs Demand ── -->
+  <div class="section" id="sec-4">
+    <div class="slide-header">
+      <div class="slide-kicker">Diagnosis</div>
+      <h1 class="slide-title">Supply vs. Demand Constrained</h1>
+      <p class="slide-sub">Which type of constraint do you have?</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3 class="red">Supply Constrained</h3>
+        <ul>
+          <li>More demand than you can handle</li>
+          <li>Calendar is genuinely full</li>
+          <li>Turning away clients</li>
+          <li>Need more capacity to deliver</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <h3>Demand Constrained — You</h3>
+        <ul>
+          <li>Plenty of capacity to deliver</li>
+          <li>Not enough people buying</li>
+          <li>Time spent on delivery, not growth</li>
+          <li>Need more leads and conversions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>If you're under $250K and priced correctly, there is no world in which you are supply-constrained.</strong> You are demand-constrained. Every discretionary hour needs to go toward getting in front of more customers.
+    </div>
+
+    <div class="callout red" style="margin-top:12px;">
+      <strong>The exception:</strong> If you're under $250K and your calendar is completely full — you're way undercharging. Fire your lowest-paying clients to make room for premium ones.
+    </div>
+  </div>
+
+  <!-- ── Section 6: What This Means ── -->
+  <div class="section" id="sec-5">
+    <div class="slide-header">
+      <div class="slide-kicker">Prioritization</div>
+      <h1 class="slide-title">What This Means for Your Time</h1>
+      <p class="slide-sub">To prioritize something is to put it above <em>everything else</em>.</p>
+    </div>
+
+    <div class="quote">
+      <p>To prioritize something is to put it above everything else — meaning you accept that other things will slip. That's okay for this season.</p>
+      <div class="quote-attr">— Alex Hormozi</div>
+    </div>
+
+    <p style="font-size:14px;color:#555;line-height:1.7;margin:20px 0;">
+      If marketing is your bottleneck — and it almost certainly is — then marketing needs to come before delivery optimization, before onboarding cleanup, before building fancy SOPs. Accept that some balls will drop. That's the cost of growing fast.
+    </p>
+
+    <div class="card-row">
+      <div class="card purple-accent">
+        <div class="card-label purple">This Toolkit</div>
+        <div style="font-size:14px;color:#555;line-height:1.6;margin-top:8px;">
+          11 of 13 modules are about demand generation — pricing, offers, avatar, marketing, and sales. Only 1–2 cover delivery and team.
+        </div>
+      </div>
+      <div class="card red-accent">
+        <div class="card-label red">Not This</div>
+        <div style="font-size:14px;color:#555;line-height:1.6;margin-top:8px;">
+          Don't spend 4 hours this week improving your onboarding checklist when you have 2 leads in the pipeline.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 7: Action Items ── -->
+  <div class="section" id="sec-6">
+    <div class="slide-header">
+      <div class="slide-kicker">Your Next Step</div>
+      <h1 class="slide-title">Self-Diagnosis</h1>
+      <p class="slide-sub">Three questions to answer before moving on.</p>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">🔍</div>
+      <div>
+        <div class="action-title">Supply or demand constrained?</div>
+        <div class="action-desc">Write down which one you are and why. Be honest. If your calendar isn't full at correct prices, you're demand-constrained.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">🎯</div>
+      <div>
+        <div class="action-title">What is your one narrowest valve?</div>
+        <div class="action-desc">Marketing? Sales? Onboarding? Pick one. Not two. The bottleneck that, if fixed, would have the biggest impact on revenue right now.</div>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-icon">⏱️</div>
+      <div>
+        <div class="action-title">Time audit</div>
+        <div class="action-desc">How much of your week is currently going toward demand generation vs. delivery and admin? What needs to change starting this week?</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <strong>Everything in this toolkit flows from here.</strong> Next up: 1.2 Pricing Fundamentals — because pricing determines who you attract and how fast you grow.
+    </div>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="nav-footer">
+    <button class="nav-footer-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Back</button>
+    <span style="font-size:12px;color:#999;" id="sectionCounter"></span>
+    <button class="nav-footer-btn primary" id="nextBtn" onclick="navigate(1)">Next →</button>
+  </div>
+</div>
+
+<script>
+  const sections = [
+    { id: 'sec-0', label: 'Why $250K' },
+    { id: 'sec-1', label: 'Core Concept' },
+    { id: 'sec-2', label: 'The Pipeline' },
+    { id: 'sec-3', label: 'Order of Ops' },
+    { id: 'sec-4', label: 'Supply vs Demand' },
+    { id: 'sec-5', label: 'Prioritization' },
+    { id: 'sec-6', label: 'Action Items' },
+  ];
+
+  let current = 0;
+
+  // Build nav
+  const nav = document.getElementById('sectionNav');
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = s.label;
+    btn.onclick = () => goTo(i);
+    nav.appendChild(btn);
+  });
+
+  // Build dots
+  const dots = document.getElementById('progressDots');
+  sections.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = s.label;
+    dots.appendChild(d);
+  });
+
+  function goTo(i) {
+    document.getElementById(sections[current].id).classList.remove('active');
+    document.querySelectorAll('.nav-btn')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.add('visited');
+
+    current = i;
+    document.getElementById(sections[current].id).classList.add('active');
+    document.querySelectorAll('.nav-btn')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.remove('visited');
+
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').textContent = current === sections.length - 1 ? 'Done ✓' : 'Next →';
+    document.getElementById('nextBtn').disabled = current === sections.length - 1;
+    document.getElementById('sectionCounter').textContent = `${current + 1} / ${sections.length}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Init counter
+  document.getElementById('sectionCounter').textContent = `1 / ${sections.length}`;
+
+  // Pipeline interactivity
+  const bottleneckMessages = [
+    '<strong>Marketing is the bottleneck</strong> — No leads, nothing else matters. Every discretionary hour goes here first.',
+    '<strong>Sales is the bottleneck</strong> — Leads coming in but not converting. Fix your pitch, your follow-up, your qualifying.',
+    '<strong>Onboarding is the bottleneck</strong> — Closing deals but struggling to get clients set up. Systematize the intake process.',
+    '<strong>Delivery is the bottleneck</strong> — Onboarded but quality or capacity is the issue. Build your SOPs and delivery team.',
+    '<strong>Reviews/Referrals is the bottleneck</strong> — Delivering well but not getting repeat or referred business. Ask, follow up, create a referral system.',
+  ];
+
+  function setBottleneck(idx) {
+    document.querySelectorAll('.pipe-stage').forEach((s, i) => {
+      s.className = 'pipe-stage' + (i === idx ? ' bottleneck' : '');
+    });
+    document.getElementById('bottleneckMsg').innerHTML = bottleneckMessages[idx];
+  }
+
+  // Fix nav() function syntax error
+  function navigate(dir) {
+    const next = Math.max(0, Math.min(sections.length - 1, current + dir));
+    goTo(next);
+  }
+</script>
+</body>
+</html>

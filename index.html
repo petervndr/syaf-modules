@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$0–$250K Toolkit — SYAF Classroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5F5F5;
+    color: #121212;
+    font-family: 'Poppins', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .header-logo {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #121212;
+    text-decoration: none;
+  }
+  .header-logo span { color: #6800FC; }
+  .header-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6800FC;
+    background: #F3ECFE;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: #121212;
+    padding: 72px 48px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: #6800FC;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: #6800FC;
+  }
+  .hero-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6800FC;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #F5F5F5;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: #AAAAAA;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat-value {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F5F5F5;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  /* ── Presenters ── */
+  .presenters {
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .presenters-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .presenter-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+  }
+  .presenter-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ── Module grid ── */
+  .modules {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+  .modules-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .modules-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #121212;
+  }
+  .modules-count {
+    font-size: 13px;
+    color: #999;
+  }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .module-card {
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #6800FC;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .module-card:hover {
+    border-color: #C4A0FD;
+    box-shadow: 0 4px 16px rgba(104, 0, 252, 0.08);
+    transform: translateY(-2px);
+  }
+  .module-card:hover::before { opacity: 1; }
+  .module-card.coming-soon {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+  }
+  .module-card.coming-soon:hover { transform: none; box-shadow: none; border-color: #E0E0E0; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .module-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6800FC;
+    background: #F3ECFE;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .status-badge.available {
+    color: #2E7D32;
+    background: #F4FEF7;
+  }
+  .status-badge.soon {
+    color: #888;
+    background: #F0F0F0;
+  }
+
+  .card-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #121212;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid #F0F0F0;
+  }
+  .card-presenter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+  }
+  .card-presenter-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .card-cta {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6800FC;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: #fff;
+    border-top: 1px solid #E0E0E0;
+    padding: 24px 48px;
+    text-align: center;
+    font-size: 12px;
+    color: #BBB;
+  }
+  .footer a { color: #999; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="header-logo" href="/">SYAF <span>Classroom</span></a>
+  <span class="header-badge">$0–$250K Toolkit</span>
+</header>
+
+<section class="hero">
+  <div class="hero-kicker">Scale Your Accounting Firm</div>
+  <h1 class="hero-title">$0–$250K Toolkit</h1>
+  <p class="hero-sub">Everything you need to speed-run your accounting firm to $250K/yr — pricing, offers, marketing, and sales, in the right order.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-value">13</div>
+      <div class="hero-stat-label">Modules</div>
+    </div>
+    <div>
+      <div class="hero-stat-value">3</div>
+      <div class="hero-stat-label">Presenters</div>
+    </div>
+    <div>
+      <div class="hero-stat-value">$250K</div>
+      <div class="hero-stat-label">Target</div>
+    </div>
+  </div>
+</section>
+
+<div class="presenters">
+  <span class="presenters-label">Presenters</span>
+  <div class="presenter-tag">
+    <div class="presenter-dot" style="background:#6800FC"></div>
+    Peter Vander Wall — Marketing
+  </div>
+  <div class="presenter-tag">
+    <div class="presenter-dot" style="background:#57A04D"></div>
+    Brian Mayoral — Sales &amp; Offers
+  </div>
+  <div class="presenter-tag">
+    <div class="presenter-dot" style="background:#2196F3"></div>
+    Ryan Bakke — Fulfillment &amp; Ops
+  </div>
+</div>
+
+<main class="modules">
+  <div class="modules-header">
+    <h2 class="modules-title">All Modules</h2>
+    <span class="modules-count">13 modules</span>
+  </div>
+
+  <div class="module-grid">
+
+    <a class="module-card" href="/mindset">
+      <div class="card-top">
+        <span class="module-num">01</span>
+        <span class="status-badge available">Available</span>
+      </div>
+      <div class="card-title">Mindset &amp; Theory of Constraints</div>
+      <div class="card-desc">Why $250K is the target, how to think about your business as a pipeline, and what to actually focus on to get there fast.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+        <span class="card-cta">Start →</span>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">02</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Pricing Fundamentals</div>
+      <div class="card-desc">Hourly, menu, and value-based pricing all have fatal flaws. Here's the hybrid model that gets you to $250K.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">03</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Identifying Your Client Avatar</div>
+      <div class="card-desc">Who you serve determines what you can charge. How to define your buy box and find the clients worth $5K–$20K/yr.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">04</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Creating Your Signature Offer</div>
+      <div class="card-desc">How to package your expertise into a flat-rate offer your ideal client actually wants to buy.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">05</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Problem-Solution Mapping</div>
+      <div class="card-desc">Match your offer to the specific problems your avatar is willing to pay to solve.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">06</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Marketing Strategy Overview</div>
+      <div class="card-desc">The three marketing strategies that work under $250K — and which one to start with based on where you are now.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">07</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Marketing Tools You'll Need</div>
+      <div class="card-desc">The exact tech stack for your funnel — what to set up first and what to skip until you're bigger.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">08</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Outreach to Affiliate Partners</div>
+      <div class="card-desc">How to build a referral network with other professionals who already serve your ideal client.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">09</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Sales Process Overview</div>
+      <div class="card-desc">The full sales call framework — how to run a discovery call that converts without feeling pushy.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">10</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">How to Capture Proof</div>
+      <div class="card-desc">Building your proof stack from your first five clients — testimonials, case studies, and results.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#6800FC"></div>Peter Vander Wall</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">11</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">Asking the Right Questions Pre-Call</div>
+      <div class="card-desc">How to qualify leads before a sales call so you only get on calls with people who are ready to buy.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">12</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">The 2-Minute Sales Script</div>
+      <div class="card-desc">A repeatable word-for-word framework for the sales conversation that closes without pressure.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+    <a class="module-card coming-soon" href="#">
+      <div class="card-top">
+        <span class="module-num">13</span>
+        <span class="status-badge soon">Coming Soon</span>
+      </div>
+      <div class="card-title">How to Follow Up Without Sounding Needy</div>
+      <div class="card-desc">The follow-up system that keeps you top of mind without annoying prospects or seeming desperate.</div>
+      <div class="card-footer">
+        <div class="card-presenter"><div class="card-presenter-dot" style="background:#57A04D"></div>Brian Mayoral</div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer class="footer">
+  &copy; 2026 Scale Your Accounting Firm &nbsp;·&nbsp; <a href="https://joinsyaf.com">joinsyaf.com</a>
+</footer>
+
+</body>
+</html>
