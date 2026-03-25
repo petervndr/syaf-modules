@@ -501,7 +501,7 @@
     </div>
 
     <div class="accordion">
-      <div class="accordion-item" onclick="this.classList.toggle('open')">
+      <div class="accordion-item" onclick="toggleAccordion(this)">
         <button class="accordion-trigger">
           <div class="accordion-label"><span class="accent">Model #1</span>Hourly Pricing</div>
           <span class="accordion-arrow">▼</span>
@@ -511,7 +511,7 @@
         </div>
       </div>
 
-      <div class="accordion-item" onclick="this.classList.toggle('open')">
+      <div class="accordion-item" onclick="toggleAccordion(this)">
         <button class="accordion-trigger">
           <div class="accordion-label"><span class="accent">Model #2</span>Menu Pricing</div>
           <span class="accordion-arrow">▼</span>
@@ -521,7 +521,7 @@
         </div>
       </div>
 
-      <div class="accordion-item" onclick="this.classList.toggle('open')">
+      <div class="accordion-item" onclick="toggleAccordion(this)">
         <button class="accordion-trigger">
           <div class="accordion-label"><span class="accent">Model #3</span>Value-Based Pricing</div>
           <span class="accordion-arrow">▼</span>
@@ -815,6 +815,12 @@
     document.getElementById('nextBtn').disabled = current === sections.length - 1;
     document.getElementById('sectionCounter').textContent = (current + 1) + ' / ' + sections.length;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAccordion(el) {
+    const wasOpen = el.classList.contains('open');
+    el.closest('.accordion').querySelectorAll('.accordion-item').forEach(item => item.classList.remove('open'));
+    if (!wasOpen) el.classList.add('open');
   }
 
   function navigate(dir) {
